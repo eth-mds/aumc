@@ -200,4 +200,5 @@ res <- list(
   tables = unname(tables)
 )
 
-ricu::set_config(list(res), "data-sources", ".")
+ricu::set_config(list(res), "data-sources",
+                 file.path(rprojroot::find_root(".git/index"), "config"))
