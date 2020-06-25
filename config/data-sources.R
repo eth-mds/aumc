@@ -126,33 +126,40 @@ cols <- lapply(info, function(tbl) {
 
 defaults <- list(
   admissions = list(
-    index_var = "admittedat"
+    index_var = "admittedat",
+    time_vars = c("admittedat", "dischargedat", "dateofdeath")
   ),
   drugitems = list(
     index_var = "start",
     val_var = "dose",
-    unit_var = "doseunit"
+    unit_var = "doseunit",
+    time_vars = c("start", "stop")
   ),
   freetextitems = list(
     index_var = "measuredat",
-    id_var = "value"
+    id_var = "value",
+    time_vars = c("measuredat", "registeredat", "updatedat")
   ),
   listitems = list(
     index_var = "measuredat",
-    val_var = "value"
+    val_var = "value",
+    time_vars = c("measuredat", "registeredat", "updatedat")
   ),
   numericitems = list(
     index_var = "measuredat",
     val_var = "value",
-    unit_var = "unit"
+    unit_var = "unit",
+    time_vars = c("measuredat", "registeredat", "updatedat")
   ),
   procedureorderitems = list(
     index_var = "registeredat",
-    val_var = "item"
+    val_var = "item",
+    time_vars = "registeredat"
   ),
   processitems = list(
-    index_var = "item",
-    val_var = "start"
+    index_var = "start",
+    val_var = "item",
+    time_vars = c("start", "stop")
   )
 )
 
@@ -167,8 +174,8 @@ n_row <- list(
 )
 
 part <- list(
-  listitems = list(itemid = 12132L),
-  numericitems = list(itemid = c(
+  listitems = list(col = "itemid", breaks = 12132L),
+  numericitems = list(col = "itemid", breaks = c(
      6640L,  6641L,  6642L,  6657L,  6665L,  6666L,  6668L,  6670L,  6672L,
      6674L,  6699L,  6707L,  8873L, 12267L, 12273L, 12277L, 12280L, 12285L,
     12302L, 12559L, 12574L, 12792L, 14840L)

@@ -22,7 +22,8 @@
         "name": "admissions",
         "files": "admissions.csv",
         "defaults": {
-          "index_var": "admittedat"
+          "index_var": "admittedat",
+          "time_vars": ["admittedat", "dischargedat", "dateofdeath"]
         },
         "num_rows": 23106,
         "cols": [
@@ -129,7 +130,8 @@
         "defaults": {
           "index_var": "start",
           "val_var": "dose",
-          "unit_var": "doseunit"
+          "unit_var": "doseunit",
+          "time_vars": ["start", "stop"]
         },
         "num_rows": 4907269,
         "cols": [
@@ -295,7 +297,8 @@
         "files": "freetextitems.csv",
         "defaults": {
           "index_var": "measuredat",
-          "id_var": "value"
+          "id_var": "value",
+          "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "num_rows": 651248,
         "cols": [
@@ -361,7 +364,8 @@
         "files": "listitems.csv",
         "defaults": {
           "index_var": "measuredat",
-          "val_var": "value"
+          "val_var": "value",
+          "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "num_rows": 30744065,
         "cols": [
@@ -422,7 +426,8 @@
           }
         ],
         "partitioning": {
-          "itemid": 12132
+          "col": "itemid",
+          "breaks": 12132
         }
       },
       {
@@ -431,7 +436,8 @@
         "defaults": {
           "index_var": "measuredat",
           "val_var": "value",
-          "unit_var": "unit"
+          "unit_var": "unit",
+          "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "num_rows": 977625612,
         "cols": [
@@ -512,7 +518,8 @@
           }
         ],
         "partitioning": {
-          "itemid": [6640, 6641, 6642, 6657, 6665, 6666, 6668, 6670, 6672, 6674, 6699, 6707, 8873, 12267, 12273, 12277, 12280, 12285, 12302, 12559, 12574, 12792, 14840]
+          "col": "itemid",
+          "breaks": [6640, 6641, 6642, 6657, 6665, 6666, 6668, 6670, 6672, 6674, 6699, 6707, 8873, 12267, 12273, 12277, 12280, 12285, 12302, 12559, 12574, 12792, 14840]
         }
       },
       {
@@ -520,7 +527,8 @@
         "files": "procedureorderitems.csv",
         "defaults": {
           "index_var": "registeredat",
-          "val_var": "item"
+          "val_var": "item",
+          "time_vars": "registeredat"
         },
         "num_rows": 2188626,
         "cols": [
@@ -570,8 +578,9 @@
         "name": "processitems",
         "files": "processitems.csv",
         "defaults": {
-          "index_var": "item",
-          "val_var": "start"
+          "index_var": "start",
+          "val_var": "item",
+          "time_vars": ["start", "stop"]
         },
         "num_rows": 256715,
         "cols": [
