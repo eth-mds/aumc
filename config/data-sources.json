@@ -60,7 +60,7 @@
           {
             "name": "admittedat",
             "col": "admittedat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "admissionyeargroup",
@@ -70,7 +70,7 @@
           {
             "name": "dischargedat",
             "col": "dischargedat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "lengthofstay",
@@ -95,7 +95,7 @@
           {
             "name": "dateofdeath",
             "col": "dateofdeath",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "weightgroup",
@@ -105,16 +105,6 @@
           {
             "name": "weightsource",
             "col": "weightsource",
-            "spec": "col_character"
-          },
-          {
-            "name": "lengthgroup",
-            "col": "lengthgroup",
-            "spec": "col_character"
-          },
-          {
-            "name": "lengthsource",
-            "col": "lengthsource",
             "spec": "col_character"
           },
           {
@@ -248,12 +238,12 @@
           {
             "name": "start",
             "col": "start",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "stop",
             "col": "stop",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "duration",
@@ -330,12 +320,12 @@
           {
             "name": "measuredat",
             "col": "measuredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredat",
             "col": "registeredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredby",
@@ -345,7 +335,7 @@
           {
             "name": "updatedat",
             "col": "updatedat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "updatedby",
@@ -397,12 +387,12 @@
           {
             "name": "measuredat",
             "col": "measuredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredat",
             "col": "registeredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredby",
@@ -412,7 +402,7 @@
           {
             "name": "updatedat",
             "col": "updatedat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "updatedby",
@@ -427,7 +417,7 @@
         ],
         "partitioning": {
           "col": "itemid",
-          "breaks": 12132
+          "breaks": 12290
         }
       },
       {
@@ -484,12 +474,12 @@
           {
             "name": "measuredat",
             "col": "measuredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredat",
             "col": "registeredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredby",
@@ -499,7 +489,7 @@
           {
             "name": "updatedat",
             "col": "updatedat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "updatedby",
@@ -519,7 +509,7 @@
         ],
         "partitioning": {
           "col": "itemid",
-          "breaks": [6640, 6641, 6642, 6657, 6665, 6666, 6668, 6670, 6672, 6674, 6699, 6707, 8873, 12267, 12273, 12277, 12280, 12285, 12302, 12559, 12574, 12792, 14840]
+          "breaks": [6641, 6642, 6643, 6664, 6666, 6667, 6669, 6672, 6673, 6675, 6707, 6709, 8874, 12270, 12275, 12278, 12281, 12286, 12303, 12561, 12576, 12804, 14841]
         }
       },
       {
@@ -565,7 +555,7 @@
           {
             "name": "registeredat",
             "col": "registeredat",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "registeredby",
@@ -602,12 +592,12 @@
           {
             "name": "start",
             "col": "start",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "stop",
             "col": "stop",
-            "spec": "col_integer"
+            "spec": "col_double"
           },
           {
             "name": "duration",

@@ -1,4 +1,7 @@
 
+r_dir <- file.path(rprojroot::find_root(".git/index"), "r")
+invisible(lapply(list.files(r_dir, full.names = TRUE), source))
+
 info <- list(
   admissions = list(
     patientid = list(spec = "col_integer"),
@@ -7,18 +10,16 @@ info <- list(
     location = list(spec = "col_character"),
     urgency = list(spec = "col_logical"),
     origin = list(spec = "col_character"),
-    admittedat = list(spec = "col_integer"),
+    admittedat = list(spec = "col_double"),
     admissionyeargroup = list(spec = "col_character"),
-    dischargedat = list(spec = "col_integer"),
+    dischargedat = list(spec = "col_double"),
     lengthofstay = list(spec = "col_integer"),
     destination = list(spec = "col_character"),
     gender = list(spec = "col_character"),
     agegroup = list(spec = "col_character"),
-    dateofdeath = list(spec = "col_integer"),
+    dateofdeath = list(spec = "col_double"),
     weightgroup = list(spec = "col_character"),
     weightsource = list(spec = "col_character"),
-    lengthgroup = list(spec = "col_character"),
-    lengthsource = list(spec = "col_character"),
     specialty = list(spec = "col_character")
   ),
   drugitems = list(
@@ -44,8 +45,8 @@ info <- list(
     administeredunit = list(spec = "col_character"),
     administeredunitid = list(spec = "col_integer"),
     action = list(spec = "col_character"),
-    start = list(spec = "col_integer"),
-    stop = list(spec = "col_integer"),
+    start = list(spec = "col_double"),
+    stop = list(spec = "col_double"),
     duration = list(spec = "col_integer"),
     solutionitemid = list(spec = "col_integer"),
     solutionitem = list(spec = "col_character"),
@@ -60,10 +61,10 @@ info <- list(
     item = list(spec = "col_character"),
     value = list(spec = "col_character"),
     comment = list(spec = "col_character"),
-    measuredat = list(spec = "col_integer"),
-    registeredat = list(spec = "col_integer"),
+    measuredat = list(spec = "col_double"),
+    registeredat = list(spec = "col_double"),
     registeredby = list(spec = "col_character"),
-    updatedat = list(spec = "col_integer"),
+    updatedat = list(spec = "col_double"),
     updatedby = list(spec = "col_character"),
     islabresult = list(spec = "col_logical")
   ),
@@ -73,10 +74,10 @@ info <- list(
     item = list(spec = "col_character"),
     valueid = list(spec = "col_integer"),
     value = list(spec = "col_character"),
-    measuredat = list(spec = "col_integer"),
-    registeredat = list(spec = "col_integer"),
+    measuredat = list(spec = "col_double"),
+    registeredat = list(spec = "col_double"),
     registeredby = list(spec = "col_character"),
-    updatedat = list(spec = "col_integer"),
+    updatedat = list(spec = "col_double"),
     updatedby = list(spec = "col_character"),
     islabresult = list(spec = "col_logical")
   ),
@@ -89,10 +90,10 @@ info <- list(
     unitid = list(spec = "col_integer"),
     unit = list(spec = "col_character"),
     comment = list(spec = "col_character"),
-    measuredat = list(spec = "col_integer"),
-    registeredat = list(spec = "col_integer"),
+    measuredat = list(spec = "col_double"),
+    registeredat = list(spec = "col_double"),
     registeredby = list(spec = "col_character"),
-    updatedat = list(spec = "col_integer"),
+    updatedat = list(spec = "col_double"),
     updatedby = list(spec = "col_character"),
     islabresult = list(spec = "col_logical"),
     fluidout = list(spec = "col_double")
@@ -104,15 +105,15 @@ info <- list(
     ordercategoryname = list(spec = "col_character"),
     itemid = list(spec = "col_integer"),
     item = list(spec = "col_character"),
-    registeredat = list(spec = "col_integer"),
+    registeredat = list(spec = "col_double"),
     registeredby = list(spec = "col_character")
   ),
   processitems = list(
     admissionid = list(spec = "col_integer"),
     itemid = list(spec = "col_integer"),
     item = list(spec = "col_character"),
-    start = list(spec = "col_integer"),
-    stop = list(spec = "col_integer"),
+    start = list(spec = "col_double"),
+    stop = list(spec = "col_double"),
     duration = list(spec = "col_integer")
   )
 )
@@ -174,11 +175,11 @@ n_row <- list(
 )
 
 part <- list(
-  listitems = list(col = "itemid", breaks = 12132L),
+  listitems = list(col = "itemid", breaks = 12290L),
   numericitems = list(col = "itemid", breaks = c(
-     6640L,  6641L,  6642L,  6657L,  6665L,  6666L,  6668L,  6670L,  6672L,
-     6674L,  6699L,  6707L,  8873L, 12267L, 12273L, 12277L, 12280L, 12285L,
-    12302L, 12559L, 12574L, 12792L, 14840L)
+     6641L,  6642L,  6643L,  6664L,  6666L,  6667L,  6669L,  6672L,  6673L,
+     6675L,  6707L,  6709L,  8874L, 12270L, 12275L, 12278L, 12281L, 12286L,
+    12303L, 12561L, 12576L, 12804L, 14841L)
   )
 )
 
@@ -200,5 +201,4 @@ res <- list(
   tables = unname(tables)
 )
 
-ricu::set_config(list(res), "data-sources",
-                 file.path(rprojroot::find_root(".git/index"), "config"))
+ricu::set_config(list(res), "data-sources", config_dir())
