@@ -193,8 +193,8 @@ res <- list(
   name = "aumc",
   url = "https://www.amsterdammedicaldatascience.nl",
   id_cfg = list(
-    patient = list(id = "patientid", position = 1L, end = "dateofdeath",
-                   table = "admissions"),
+    patient = list(id = "patientid", position = 1L, start = "firstadmittedat",
+                   end = "dateofdeath", table = "admissions"),
     icustay = list(id = "admissionid", position = 2L, start = "admittedat",
                    end = "dischargedat", table = "admissions")
   ),

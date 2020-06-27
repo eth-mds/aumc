@@ -6,6 +6,7 @@
       "patient": {
         "id": "patientid",
         "position": 1,
+        "start": "firstadmittedat",
         "end": "dateofdeath",
         "table": "admissions"
       },

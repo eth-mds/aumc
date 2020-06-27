@@ -3,7 +3,7 @@
 
 Using `ricu` to access the publicly available ICU database [AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of [Amsterdam UMC](https://www.amsterdamumc.nl).
 
-# Configuring ricu
+## Configuring ricu
 
 Several environment variables can be set for `ricu` to facilitate the integration of `aumc`:
 
