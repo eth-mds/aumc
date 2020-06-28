@@ -1,0 +1,64 @@
+{
+  "heart_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6640,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "new_hr": {
+    "unit": ["bpm", "/min"],
+    "min": 0,
+    "max": 300,
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6640,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ],
+      "eicu": [
+        {
+          "table": "vitalperiodic",
+          "itm_vars": "heartrate",
+          "class": "col_itm"
+        }
+      ],
+      "eicu_demo": [
+        {
+          "table": "vitalperiodic",
+          "itm_vars": "heartrate",
+          "class": "col_itm"
+        }
+      ],
+      "hirid": [
+        {
+          "ids": 200,
+          "table": "observations",
+          "sub_var": "variableid"
+        }
+      ],
+      "mimic": [
+        {
+          "ids": [211, 220045],
+          "table": "chartevents",
+          "sub_var": "itemid",
+          "callback": "test_callback"
+        }
+      ],
+      "mimic_demo": [
+        {
+          "ids": [211, 220045],
+          "table": "chartevents",
+          "sub_var": "itemid",
+          "callback": "test_callback"
+        }
+      ]
+    }
+  }
+}

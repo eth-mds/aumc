@@ -22,7 +22,7 @@ check_col <- function(nme, cols, sort = NULL) {
   callback <- readr::DataFrameCallback$new(callback)
 
   ori <- readr::read_csv_chunked(
-    paste0("/Users/nbennett/Polybox/nbennett/aumc-data/", nme, ".csv"),
+    file.path(data_dir(), "aumc", paste0(nme, ".csv")),
     callback, 10 ^ 7, col_types = paste0(typ, collapse = "")
   )
 

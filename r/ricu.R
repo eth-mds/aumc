@@ -39,17 +39,6 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
   as_id_tbl(dat, id_vars = id_hint, by_ref = TRUE)
 }
 
-aumc_map <- memoise::memoise(
-
-  function(cols = c("patientid", "admissionid", "admittedat")) {
-
-    tbl <- as_src_tbl("admissions", "aumc")
-
-    rename_cols(tbl[, cols], "time_origin", "admittedat", skip_absent = TRUE,
-                by_ref = TRUE)
-  }
-)
-
 .S3method("load_difftime", "aumc_tbl", load_aumc)
 
 aumc_windows <- function(x) {
