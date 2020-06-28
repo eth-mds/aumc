@@ -51,4 +51,4 @@ cfg <- lapply(cfg, function(x) {
   x
 })
 
-ricu::set_config(cfg, "concept-dict", config_dir())
+ricu::set_config(cfg, "concept-dict", config_dir)

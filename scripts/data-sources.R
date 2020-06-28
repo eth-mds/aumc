@@ -201,4 +201,4 @@ res <- list(
   tables = unname(tables)
 )
 
-ricu::set_config(list(res), "data-sources", config_dir())
+ricu::set_config(list(res), "data-sources", config_dir)
