@@ -14,3 +14,10 @@ load_concepts(gluc, id_type = "icustay")
 
 load_concepts("new_hr", "mimic_demo")
 load_concepts("heart_rate", "aumc")
+
+unique_fun <- function(...) !duplicated(data.table::setDT(list(...)))
+
+d_items <- subset(
+  aumc$numericitems, .env$unique_fun(.data$itemid, .data$item, .data$unit),
+  c("itemid", "item", "unit"), part_safe = TRUE
+)
