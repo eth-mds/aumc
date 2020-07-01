@@ -1,6 +1,22 @@
 
 ms_as_min <- function(x) as.difftime(as.integer(x / 6e4), units = "mins")
 
+if (base::getRversion() < "4.0.0") {
+
+  .S3method <- function(generic, class, method) {
+
+    if(missing(method)) {
+      method <- paste(generic, class, sep = ".")
+    }
+
+    method <- match.fun(method)
+
+    registerS3method(generic, class, method, envir = parent.frame())
+
+    invisible(NULL)
+  }
+}
+
 load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
                       time_vars = ricu::time_vars(x), ...) {
 
