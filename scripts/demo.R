@@ -12,8 +12,8 @@ gluc <- concept("glucose", unit = "mmol/l",
 load_concepts(gluc, id_type = "patient")
 load_concepts(gluc, id_type = "icustay")
 
-load_concepts("new_hr", "mimic_demo")
-load_concepts("heart_rate", "aumc")
+load_concepts("glucose", "mimic_demo")
+load_concepts("glucose", "aumc")
 
 unique_fun <- function(...) !duplicated(data.table::setDT(list(...)))
 

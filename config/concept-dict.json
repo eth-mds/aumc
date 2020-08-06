@@ -1,4 +1,268 @@
 {
+  "alanine_aminotransferase": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [11978, 6800],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "albumin": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9937, 6801],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "alkaline_phosphatase": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [11984, 6803],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "anion_gap": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9559, 8492],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "asparate_aminotransferase": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [11990, 6806],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "base_excess": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9994, 6807],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "basophils": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 14256,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "bicarbonate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9992, 6810],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "bilirubin_total": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9945, 6813],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "c_reactive_protein": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [10079, 6825],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "calcium": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9933, 6817],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "calcium_ionized": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [10267, 6815, 9560, 8915, 9561],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "chloride": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 9930,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "creatine_kinase": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [11998, 6822],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "creatinine": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9941, 6836, 14216],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "diastolic_bp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6643,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "dobutamine": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 1442,
+          "table": "drugitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "dopamine": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6983,
+          "table": "drugitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "fi_o2": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 12279,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "gcs_eye": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 13077,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "gcs_motor": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 13072,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "gcs_total": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6732,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "gcs_verbal": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 13066,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "glucose": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9947, 6833, 9557],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "heart_rate": {
     "sources": {
       "aumc": [
@@ -10,53 +274,321 @@
       ]
     }
   },
-  "new_hr": {
-    "unit": ["bpm", "/min"],
-    "min": 0,
-    "max": 300,
+  "hematocrit": {
     "sources": {
       "aumc": [
         {
-          "ids": 6640,
+          "ids": [11423, 11545, 6777],
           "table": "numericitems",
           "sub_var": "itemid"
         }
-      ],
-      "eicu": [
+      ]
+    }
+  },
+  "hemoglobin": {
+    "sources": {
+      "aumc": [
         {
-          "table": "vitalperiodic",
-          "itm_vars": "heartrate",
-          "class": "col_itm"
+          "ids": [9960, 6778, 10286, 19703, 9553],
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
-      ],
-      "eicu_demo": [
+      ]
+    }
+  },
+  "inr_pt": {
+    "sources": {
+      "aumc": [
         {
-          "table": "vitalperiodic",
-          "itm_vars": "heartrate",
-          "class": "col_itm"
+          "ids": 11893,
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
-      ],
-      "hirid": [
+      ]
+    }
+  },
+  "insulin": {
+    "sources": {
+      "aumc": [
         {
-          "ids": 200,
-          "table": "observations",
-          "sub_var": "variableid"
+          "ids": [6929, 4218, 2663],
+          "table": "drugitems",
+          "sub_var": "itemid"
         }
-      ],
-      "mimic": [
+      ]
+    }
+  },
+  "lactate": {
+    "sources": {
+      "aumc": [
         {
-          "ids": [211, 220045],
-          "table": "chartevents",
-          "sub_var": "itemid",
-          "callback": "test_callback"
+          "ids": [10053, 6837, 9580],
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
-      ],
-      "mimic_demo": [
+      ]
+    }
+  },
+  "lymphocytes": {
+    "sources": {
+      "aumc": [
         {
-          "ids": [211, 220045],
-          "table": "chartevents",
-          "sub_var": "itemid",
-          "callback": "test_callback"
+          "ids": 14258,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "magnesium": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9952, 6839],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "mch": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 11679,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "mchc": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 18666,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "mcv": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 9968,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "mean_bp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6642,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "methemoglobin": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 11692,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "norepinephrine": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 8676,
+          "table": "drugitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "o2_saturation": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [12311, 8903],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "o2_saturation.1": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6709,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "pa_co2": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6846, 9990, 21213],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "pa_o2": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [7433, 9996, 21214],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "ph": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [12310, 6848],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "phosphate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9935, 6828],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "platelet_count": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9964, 6797, 10409, 14252],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "potassium": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9927, 9556, 6835, 10285],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "ptt": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 17982,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "respiratory_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [8874, 12266],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "sodium": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9924, 6840, 9555, 10284],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "systolic_bp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6641,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "troponin_t": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 10407,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "urea_nitrogen": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9943, 6850],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "urine_out": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 8794,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "white_blood_cells": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [9965, 6779],
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
       ]
     }
