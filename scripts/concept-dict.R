@@ -4,10 +4,11 @@ invisible(lapply(list.files(r_dir, full.names = TRUE), source))
 
 wrap_list <- function(x, ...) {
   x <- lapply(x, as.integer)
+  x <- lapply(x, sort)
   x <- Map(list, ids = x, ...)
   x <- lapply(x, list)
   x <- Map(list, aumc = x)
-  x <- Map(list, sources = x)
+  Map(list, sources = x)
 }
 
 num_itms <- list(
@@ -38,7 +39,7 @@ num_itms <- list(
   bicarbonate = c(9992, 6810),
   anion_gap = c(9559, 8492),
   glucose = c(9947, 6833, 9557),
-  o2_saturation = c(12311, 8903),
+  o2_saturation = c(6709, 12311, 8903),
   fi_o2 = 12279, chloride = 9930,
   mcv = 9968,
   mch = 11679,
@@ -50,7 +51,6 @@ num_itms <- list(
   troponin_t = 10407,
   methemoglobin = 11692,
   heart_rate = 6640,
-  o2_saturation = 6709,
   respiratory_rate = c(8874, 12266),
   systolic_bp = 6641,
   mean_bp = 6642,
@@ -73,7 +73,34 @@ drg_itms <- list(
 
 drg_itms <- wrap_list(drg_itms, table = "drugitems", sub_var = "itemid")
 
-cfg <- c(num_itms, drg_itms)
+cfg <- list(
+  age = list(
+    sources = list(
+      aumc = list(
+        list(table = "admissions", itm_vars = "agegroup",
+             callback = "aumc_age", class = "col_itm")
+      )
+    )
+  ),
+  weight = list(
+    sources = list(
+      aumc = list(
+        list(table = "admissions", itm_vars = "weightgroup",
+             callback = "aumc_weight", class = "col_itm")
+      )
+    )
+  ),
+  sex = list(
+    sources = list(
+      aumc = list(
+        list(table = "admissions", itm_vars = "gender",
+             callback = "aumc_sex", class = "col_itm")
+      )
+    )
+  )
+)
+
+cfg <- c(num_itms, drg_itms, cfg)
 cfg <- cfg[order(names(cfg))]
 
 cfg <- lapply(cfg, function(x) {

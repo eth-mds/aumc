@@ -1,9 +1,21 @@
 {
+  "age": {
+    "sources": {
+      "aumc": [
+        {
+          "table": "admissions",
+          "itm_vars": "agegroup",
+          "callback": "aumc_age",
+          "class": "col_itm"
+        }
+      ]
+    }
+  },
   "alanine_aminotransferase": {
     "sources": {
       "aumc": [
         {
-          "ids": [11978, 6800],
+          "ids": [6800, 11978],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -14,7 +26,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9937, 6801],
+          "ids": [6801, 9937],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -25,7 +37,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [11984, 6803],
+          "ids": [6803, 11984],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -36,7 +48,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9559, 8492],
+          "ids": [8492, 9559],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -47,7 +59,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [11990, 6806],
+          "ids": [6806, 11990],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -58,7 +70,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9994, 6807],
+          "ids": [6807, 9994],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -80,7 +92,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9992, 6810],
+          "ids": [6810, 9992],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -91,7 +103,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9945, 6813],
+          "ids": [6813, 9945],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -102,7 +114,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [10079, 6825],
+          "ids": [6825, 10079],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -113,7 +125,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9933, 6817],
+          "ids": [6817, 9933],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -124,7 +136,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [10267, 6815, 9560, 8915, 9561],
+          "ids": [6815, 8915, 9560, 9561, 10267],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -146,7 +158,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [11998, 6822],
+          "ids": [6822, 11998],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -157,7 +169,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9941, 6836, 14216],
+          "ids": [6836, 9941, 14216],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -256,7 +268,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9947, 6833, 9557],
+          "ids": [6833, 9557, 9947],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -278,7 +290,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [11423, 11545, 6777],
+          "ids": [6777, 11423, 11545],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -289,7 +301,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9960, 6778, 10286, 19703, 9553],
+          "ids": [6778, 9553, 9960, 10286, 19703],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -311,7 +323,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [6929, 4218, 2663],
+          "ids": [2663, 4218, 6929],
           "table": "drugitems",
           "sub_var": "itemid"
         }
@@ -322,7 +334,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [10053, 6837, 9580],
+          "ids": [6837, 9580, 10053],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -344,7 +356,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9952, 6839],
+          "ids": [6839, 9952],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -421,18 +433,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [12311, 8903],
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "o2_saturation.1": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6709,
+          "ids": [6709, 8903, 12311],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -465,7 +466,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [12310, 6848],
+          "ids": [6848, 12310],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -476,7 +477,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9935, 6828],
+          "ids": [6828, 9935],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -487,7 +488,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9964, 6797, 10409, 14252],
+          "ids": [6797, 9964, 10409, 14252],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -498,7 +499,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9927, 9556, 6835, 10285],
+          "ids": [6835, 9556, 9927, 10285],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -527,11 +528,23 @@
       ]
     }
   },
+  "sex": {
+    "sources": {
+      "aumc": [
+        {
+          "table": "admissions",
+          "itm_vars": "gender",
+          "callback": "aumc_sex",
+          "class": "col_itm"
+        }
+      ]
+    }
+  },
   "sodium": {
     "sources": {
       "aumc": [
         {
-          "ids": [9924, 6840, 9555, 10284],
+          "ids": [6840, 9555, 9924, 10284],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -564,7 +577,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [9943, 6850],
+          "ids": [6850, 9943],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -582,11 +595,23 @@
       ]
     }
   },
+  "weight": {
+    "sources": {
+      "aumc": [
+        {
+          "table": "admissions",
+          "itm_vars": "weightgroup",
+          "callback": "aumc_weight",
+          "class": "col_itm"
+        }
+      ]
+    }
+  },
   "white_blood_cells": {
     "sources": {
       "aumc": [
         {
-          "ids": [9965, 6779],
+          "ids": [6779, 9965],
           "table": "numericitems",
           "sub_var": "itemid"
         }

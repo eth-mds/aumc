@@ -21,3 +21,5 @@ d_items <- subset(
   aumc$numericitems, .env$unique_fun(.data$itemid, .data$item, .data$unit),
   c("itemid", "item", "unit"), part_safe = TRUE
 )
+
+load_concepts(c("age", "weight", "sex"), "aumc")
