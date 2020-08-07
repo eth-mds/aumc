@@ -1,5 +1,6 @@
 
-library(ricu)
+r_dir <- file.path(rprojroot::find_root(".git/index"), "r")
+invisible(lapply(list.files(r_dir, full.names = TRUE), source))
 
 check_col <- function(nme, cols, sort = NULL) {
 
@@ -36,7 +37,7 @@ check_col <- function(nme, cols, sort = NULL) {
   }, integer(1L))
 }
 
-import_src("aumc")
+import_src("aumc", locale = readr::locale(encoding = "latin1"))
 attach_src("aumc")
 
 check_col("admissions", c("admittedat", "dischargedat", "dateofdeath"))

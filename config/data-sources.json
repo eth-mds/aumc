@@ -121,6 +121,7 @@
         "defaults": {
           "index_var": "start",
           "val_var": "dose",
+          "unit_var": "doseunit",
           "time_vars": ["start", "stop"]
         },
         "num_rows": 4907269,
@@ -426,6 +427,7 @@
         "defaults": {
           "index_var": "measuredat",
           "val_var": "value",
+          "unit_var": "unit",
           "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "num_rows": 977625612,
