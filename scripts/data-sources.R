@@ -133,7 +133,6 @@ defaults <- list(
   drugitems = list(
     index_var = "start",
     val_var = "dose",
-    unit_var = "doseunit",
     time_vars = c("start", "stop")
   ),
   freetextitems = list(
@@ -149,7 +148,6 @@ defaults <- list(
   numericitems = list(
     index_var = "measuredat",
     val_var = "value",
-    unit_var = "unit",
     time_vars = c("measuredat", "registeredat", "updatedat")
   ),
   procedureorderitems = list(
