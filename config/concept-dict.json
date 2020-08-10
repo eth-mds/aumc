@@ -28,7 +28,8 @@
         {
           "ids": [6801, 9937],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_albu"
         }
       ]
     }
@@ -105,7 +106,8 @@
         {
           "ids": [6813, 9945],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_bili"
         }
       ]
     }
@@ -127,7 +129,8 @@
         {
           "ids": [6817, 9933],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_calc"
         }
       ]
     }
@@ -171,7 +174,8 @@
         {
           "ids": [6836, 9941, 14216],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_crea"
         }
       ]
     }
@@ -270,7 +274,8 @@
         {
           "ids": [6833, 9557, 9947],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_gluc"
         }
       ]
     }
@@ -303,7 +308,8 @@
         {
           "ids": [6778, 9553, 9960, 10286, 19703],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_hemo"
         }
       ]
     }
@@ -358,7 +364,8 @@
         {
           "ids": [6839, 9952],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_magn"
         }
       ]
     }
@@ -369,7 +376,8 @@
         {
           "ids": 11679,
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_mch"
         }
       ]
     }
@@ -380,7 +388,8 @@
         {
           "ids": 18666,
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_mchc"
         }
       ]
     }
@@ -479,7 +488,8 @@
         {
           "ids": [6828, 9935],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_phos"
         }
       ]
     }
@@ -579,7 +589,8 @@
         {
           "ids": [6850, 9943],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "multiply_aumc_urea"
         }
       ]
     }

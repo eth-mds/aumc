@@ -12,25 +12,17 @@ wrap_list <- function(x, ...) {
 }
 
 num_itms <- list(
-  creatinine = c(9941, 6836, 14216),
-  urea_nitrogen = c(9943, 6850),
-  hemoglobin = c(9960, 6778, 10286, 19703, 9553),
   hematocrit = c(11423, 11545, 6777),
   platelet_count = c(9964, 6797, 10409, 14252),
   white_blood_cells = c(9965, 6779),
   sodium = c(9924, 6840, 9555, 10284),
   potassium = c(9927, 9556, 6835, 10285),
-  magnesium = c(9952, 6839),
   c_reactive_protein = c(10079, 6825),
-  phosphate = c(9935, 6828),
   creatine_kinase = c(11998, 6822),
-  albumin = c(9937, 6801),
   alanine_aminotransferase = c(11978, 6800),
   asparate_aminotransferase = c(11990, 6806),
   lactate = c(10053, 6837, 9580),
   alkaline_phosphatase = c(11984, 6803),
-  bilirubin_total = c(9945, 6813),
-  calcium = c(9933, 6817),
   calcium_ionized = c(10267, 6815, 9560, 8915, 9561),
   ph = c(12310, 6848),
   pa_co2 = c(6846, 9990, 21213),
@@ -38,12 +30,10 @@ num_itms <- list(
   base_excess = c(9994, 6807),
   bicarbonate = c(9992, 6810),
   anion_gap = c(9559, 8492),
-  glucose = c(9947, 6833, 9557),
   o2_saturation = c(6709, 12311, 8903),
-  fi_o2 = 12279, chloride = 9930,
+  fi_o2 = 12279,
+  chloride = 9930,
   mcv = 9968,
-  mch = 11679,
-  mchc = 18666,
   lymphocytes = 14258,
   inr_pt = 11893,
   ptt = 17982,
@@ -63,6 +53,29 @@ num_itms <- list(
 )
 
 num_itms <- wrap_list(num_itms, table = "numericitems", sub_var = "itemid")
+
+cbk_itms <- list(
+  albumin = c(9937, 6801),
+  bilirubin_total = c(9945, 6813),
+  calcium = c(9933, 6817),
+  creatinine = c(9941, 6836, 14216),
+  glucose = c(9947, 6833, 9557),
+  hemoglobin = c(9960, 6778, 10286, 19703, 9553),
+  magnesium = c(9952, 6839),
+  mchc = 18666,
+  mch = 11679,
+  phosphate = c(9935, 6828),
+  urea_nitrogen = c(9943, 6850)
+)
+
+cbk_itms <- wrap_list(cbk_itms, table = "numericitems", sub_var = "itemid",
+  callback = c(
+    "multiply_aumc_albu", "multiply_aumc_bili", "multiply_aumc_calc",
+    "multiply_aumc_crea", "multiply_aumc_gluc", "multiply_aumc_hemo",
+    "multiply_aumc_magn", "multiply_aumc_mchc", "multiply_aumc_mch",
+    "multiply_aumc_phos", "multiply_aumc_urea"
+  )
+)
 
 drg_itms <- list(
   norepinephrine = 8676,
@@ -100,7 +113,7 @@ cfg <- list(
   )
 )
 
-cfg <- c(num_itms, drg_itms, cfg)
+cfg <- c(cbk_itms, num_itms, drg_itms, cfg)
 cfg <- cfg[order(names(cfg))]
 
 cfg <- lapply(cfg, function(x) {
