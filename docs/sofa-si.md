@@ -17,7 +17,7 @@
 
 ## Suspected infection
 
-List of antibiotics
+### Antibiotics
 ```
  [,1]                                           
  [1,] "Amikacine (Amukin)"                           
