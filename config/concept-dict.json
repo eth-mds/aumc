@@ -1,40 +1,29 @@
 {
-  "age": {
+  "admissions": {
     "sources": {
       "aumc": [
         {
           "table": "admissions",
           "itm_vars": "agegroup",
-          "callback": "aumc_age",
+          "callback": "apply_map(c(`18-39` = 30, `40-49` = 45, `50-59` = 55, `60-69` = 65, `70-79` = 75, `80+` = 90))",
           "class": "col_itm"
         }
       ]
     }
   },
-  "alanine_aminotransferase": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [6800, 11978],
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "albumin": {
+  "alb": {
     "sources": {
       "aumc": [
         {
           "ids": [6801, 9937],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_albu"
+          "callback": "transform_fun(binary_op(`*`, 0.1))"
         }
       ]
     }
   },
-  "alkaline_phosphatase": {
+  "alp": {
     "sources": {
       "aumc": [
         {
@@ -45,18 +34,18 @@
       ]
     }
   },
-  "anion_gap": {
+  "alt": {
     "sources": {
       "aumc": [
         {
-          "ids": [8492, 9559],
+          "ids": [6800, 11978],
           "table": "numericitems",
           "sub_var": "itemid"
         }
       ]
     }
   },
-  "asparate_aminotransferase": {
+  "ast": {
     "sources": {
       "aumc": [
         {
@@ -67,18 +56,7 @@
       ]
     }
   },
-  "base_excess": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [6807, 9994],
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "basophils": {
+  "basos": {
     "sources": {
       "aumc": [
         {
@@ -89,7 +67,18 @@
       ]
     }
   },
-  "bicarbonate": {
+  "be": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6807, 9994],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "bicar": {
     "sources": {
       "aumc": [
         {
@@ -100,42 +89,43 @@
       ]
     }
   },
-  "bilirubin_total": {
+  "bili": {
     "sources": {
       "aumc": [
         {
           "ids": [6813, 9945],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_bili"
+          "callback": "transform_fun(binary_op(`*`, 0.058467))"
         }
       ]
     }
   },
-  "c_reactive_protein": {
+  "bun": {
     "sources": {
       "aumc": [
         {
-          "ids": [6825, 10079],
+          "ids": [6850, 9943],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "transform_fun(binary_op(`*`, 2.8))"
         }
       ]
     }
   },
-  "calcium": {
+  "ca": {
     "sources": {
       "aumc": [
         {
           "ids": [6817, 9933],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_calc"
+          "callback": "transform_fun(binary_op(`*`, 4.008))"
         }
       ]
     }
   },
-  "calcium_ionized": {
+  "cai": {
     "sources": {
       "aumc": [
         {
@@ -146,18 +136,7 @@
       ]
     }
   },
-  "chloride": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 9930,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "creatine_kinase": {
+  "ck": {
     "sources": {
       "aumc": [
         {
@@ -168,19 +147,41 @@
       ]
     }
   },
-  "creatinine": {
+  "cl": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 9930,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "crea": {
     "sources": {
       "aumc": [
         {
           "ids": [6836, 9941, 14216],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_crea"
+          "callback": "transform_fun(binary_op(`*`, 0.011309))"
         }
       ]
     }
   },
-  "diastolic_bp": {
+  "crp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6825, 10079],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "dbp": {
     "sources": {
       "aumc": [
         {
@@ -191,7 +192,7 @@
       ]
     }
   },
-  "dobutamine": {
+  "dobu": {
     "sources": {
       "aumc": [
         {
@@ -202,7 +203,7 @@
       ]
     }
   },
-  "dopamine": {
+  "dopa": {
     "sources": {
       "aumc": [
         {
@@ -213,18 +214,7 @@
       ]
     }
   },
-  "fi_o2": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 12279,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "gcs_eye": {
+  "egcs": {
     "sources": {
       "aumc": [
         {
@@ -235,63 +225,30 @@
       ]
     }
   },
-  "gcs_motor": {
+  "fio2": {
     "sources": {
       "aumc": [
         {
-          "ids": 13072,
+          "ids": 12279,
           "table": "numericitems",
           "sub_var": "itemid"
         }
       ]
     }
   },
-  "gcs_total": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6732,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "gcs_verbal": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 13066,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "glucose": {
+  "glu": {
     "sources": {
       "aumc": [
         {
           "ids": [6833, 9557, 9947],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_gluc"
+          "callback": "transform_fun(binary_op(`*`, 18.016))"
         }
       ]
     }
   },
-  "heart_rate": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6640,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "hematocrit": {
+  "hct": {
     "sources": {
       "aumc": [
         {
@@ -302,14 +259,25 @@
       ]
     }
   },
-  "hemoglobin": {
+  "hgb": {
     "sources": {
       "aumc": [
         {
           "ids": [6778, 9553, 9960, 10286, 19703],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_hemo"
+          "callback": "transform_fun(binary_op(`*`, 1.611344))"
+        }
+      ]
+    }
+  },
+  "hr": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6640,
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
       ]
     }
@@ -325,7 +293,7 @@
       ]
     }
   },
-  "insulin": {
+  "ins": {
     "sources": {
       "aumc": [
         {
@@ -336,7 +304,18 @@
       ]
     }
   },
-  "lactate": {
+  "k": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6835, 9556, 9927, 10285],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "lact": {
     "sources": {
       "aumc": [
         {
@@ -347,7 +326,7 @@
       ]
     }
   },
-  "lymphocytes": {
+  "lymph": {
     "sources": {
       "aumc": [
         {
@@ -358,14 +337,13 @@
       ]
     }
   },
-  "magnesium": {
+  "map": {
     "sources": {
       "aumc": [
         {
-          "ids": [6839, 9952],
+          "ids": 6642,
           "table": "numericitems",
-          "sub_var": "itemid",
-          "callback": "multiply_aumc_magn"
+          "sub_var": "itemid"
         }
       ]
     }
@@ -377,7 +355,7 @@
           "ids": 11679,
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_mch"
+          "callback": "transform_fun(binary_op(`*`, 0.016114))"
         }
       ]
     }
@@ -389,7 +367,7 @@
           "ids": 18666,
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_mchc"
+          "callback": "transform_fun(binary_op(`*`, 1.611344))"
         }
       ]
     }
@@ -405,18 +383,7 @@
       ]
     }
   },
-  "mean_bp": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6642,
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "methemoglobin": {
+  "methb": {
     "sources": {
       "aumc": [
         {
@@ -427,7 +394,41 @@
       ]
     }
   },
-  "norepinephrine": {
+  "mg": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6839, 9952],
+          "table": "numericitems",
+          "sub_var": "itemid",
+          "callback": "transform_fun(binary_op(`*`, 2.431))"
+        }
+      ]
+    }
+  },
+  "mgcs": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 13072,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "na": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6840, 9555, 9924, 10284],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "norepi": {
     "sources": {
       "aumc": [
         {
@@ -438,7 +439,7 @@
       ]
     }
   },
-  "o2_saturation": {
+  "o2sat": {
     "sources": {
       "aumc": [
         {
@@ -449,22 +450,11 @@
       ]
     }
   },
-  "pa_co2": {
+  "pco2": {
     "sources": {
       "aumc": [
         {
           "ids": [6846, 9990, 21213],
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "pa_o2": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [7433, 9996, 21214],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -482,19 +472,19 @@
       ]
     }
   },
-  "phosphate": {
+  "phos": {
     "sources": {
       "aumc": [
         {
           "ids": [6828, 9935],
           "table": "numericitems",
           "sub_var": "itemid",
-          "callback": "multiply_aumc_phos"
+          "callback": "transform_fun(binary_op(`*`, 3.097521))"
         }
       ]
     }
   },
-  "platelet_count": {
+  "plt": {
     "sources": {
       "aumc": [
         {
@@ -505,11 +495,11 @@
       ]
     }
   },
-  "potassium": {
+  "po2": {
     "sources": {
       "aumc": [
         {
-          "ids": [6835, 9556, 9927, 10285],
+          "ids": [7433, 9996, 21214],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -527,7 +517,7 @@
       ]
     }
   },
-  "respiratory_rate": {
+  "resp": {
     "sources": {
       "aumc": [
         {
@@ -538,30 +528,7 @@
       ]
     }
   },
-  "sex": {
-    "sources": {
-      "aumc": [
-        {
-          "table": "admissions",
-          "itm_vars": "gender",
-          "callback": "aumc_sex",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
-  "sodium": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [6840, 9555, 9924, 10284],
-          "table": "numericitems",
-          "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "systolic_bp": {
+  "sbp": {
     "sources": {
       "aumc": [
         {
@@ -572,7 +539,18 @@
       ]
     }
   },
-  "troponin_t": {
+  "tgcs": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6732,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "tnt": {
     "sources": {
       "aumc": [
         {
@@ -583,19 +561,7 @@
       ]
     }
   },
-  "urea_nitrogen": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [6850, 9943],
-          "table": "numericitems",
-          "sub_var": "itemid",
-          "callback": "multiply_aumc_urea"
-        }
-      ]
-    }
-  },
-  "urine_out": {
+  "urine": {
     "sources": {
       "aumc": [
         {
@@ -606,25 +572,48 @@
       ]
     }
   },
-  "weight": {
+  "vgcs": {
     "sources": {
       "aumc": [
         {
-          "table": "admissions",
-          "itm_vars": "weightgroup",
-          "callback": "aumc_weight",
-          "class": "col_itm"
+          "ids": 13066,
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
       ]
     }
   },
-  "white_blood_cells": {
+  "wbc": {
     "sources": {
       "aumc": [
         {
           "ids": [6779, 9965],
           "table": "numericitems",
           "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "54": {
+    "sources": {
+      "aumc": [
+        {
+          "table": "admissions",
+          "itm_vars": "weightgroup",
+          "callback": "apply_map(c(`59-` = 50, `60-69` = 65, `70-79` = 75, `80-89` = 85, `90-99` = 95, `100-109` = 105, `110+` = 120))",
+          "class": "col_itm"
+        }
+      ]
+    }
+  },
+  "55": {
+    "sources": {
+      "aumc": [
+        {
+          "table": "admissions",
+          "itm_vars": "gender",
+          "callback": "apply_map(c(Vrouw = 'Female', Man = 'Male'))",
+          "class": "col_itm"
         }
       ]
     }
