@@ -2,15 +2,10 @@
 r_dir <- file.path(rprojroot::find_root(".git/index"), "r")
 invisible(lapply(list.files(r_dir, full.names = TRUE), source))
 
-wrap_list <- function(...) {
-  x <- Map(list, ...)
-  x <- lapply(x, list)
-  x <- Map(list, aumc = x)
-  Map(list, sources = x)
-}
+wrap_lst <- function(...) wrap_src(lapply(Map(list, ...), list))
+wrap_src <- function(x) Map(list, sources = Map(list, aumc = x))
 
 prep_ids <- function(x) lapply(lapply(x, as.integer), sort)
-
 strip_ws <- function(x) gsub("\\s+", " ", x)
 
 num_itms <- list(
@@ -47,14 +42,10 @@ num_itms <- list(
   sbp = 6641,
   map = 6642,
   dbp = 6643,
-  urine = 8794,
-  tgcs = 6732,
-  egcs = 13077,
-  vgcs = 13066,
-  mgcs = 13072
+  urine = 8794
 )
 
-num_itms <- wrap_list(ids = prep_ids(num_itms), table = "numericitems",
+num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
                       sub_var = "itemid")
 
 cbk_itms <- list(
@@ -71,7 +62,7 @@ cbk_itms <- list(
   bun = c(9943, 6850)
 )
 
-cbk_itms <- wrap_list(ids = prep_ids(cbk_itms), table = "numericitems",
+cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
   sub_var = "itemid", callback = c(
     "transform_fun(binary_op(`*`, 0.1))",
     "transform_fun(binary_op(`*`, 0.058467))",
@@ -88,17 +79,87 @@ cbk_itms <- wrap_list(ids = prep_ids(cbk_itms), table = "numericitems",
 )
 
 drg_itms <- list(
-  norepi = 8676,
-  dopa = 6983,
-  ins = c(6929, 4218, 2663),
-  dobu = 1442
+  norepi = 7229,
+  epi = 6818,
+  dopa = 7179,
+  dobu = 7178
 )
 
-drg_itms <- wrap_list(ids = prep_ids(drg_itms), table = "drugitems",
-                      sub_var = "itemid")
+drg_itms <- wrap_lst(ids = prep_ids(drg_itms), table = "drugitems",
+                      sub_var = "itemid", end_var = "stop",
+                      rel_weight = "doserateperkg", rate_uom = "doserateunit",
+                      callback = "aumc_vasos")
 
-dem_itms <- wrap_list(table = "admissions",
-  itm_vars = c("agegroup", "weightgroup", "gender"),
+gcs_itms <- wrap_src(
+  list(
+    egcs = Map(list, ids = c(6732L, 13077L), table = rep("listitems", 2L),
+      sub_var = rep("itemid", 2L),
+      callback = strip_ws(c(
+        "apply_map(
+          c(`Geen reactie`               = 1,
+            `Reactie op pijnprikkel`     = 2,
+            `Reactie op verbale prikkel` = 3,
+            `Spontane reactie`           = 4)
+        )",
+        "apply_map(
+          c(`Niet`                       = 1,
+            `Op pijn`                    = 2,
+            `Op aanspreken`              = 3,
+            `Spontaan`                   = 4)
+        )"
+      ))
+    ),
+    mgcs = Map(list, ids = c(6734L, 13072L), table = rep("listitems", 2L),
+      sub_var = rep("itemid", 2L),
+      callback = strip_ws(c(
+        "apply_map(
+          c(`Geen reactie`                         = 1,
+            `Strekken`                             = 2,
+            `Decortatie reflex (abnormaal buigen)` = 3,
+            `Spastische reactie (terugtrekken)`    = 4,
+            `Localiseert pijn`                     = 5,
+            `Volgt verbale commando's op`          = 6)
+        )",
+        "apply_map(
+          c(`Geen reactie`                         = 1,
+            `Strekken op pijn`                     = 2,
+            `Abnormaal buigen bij pijn`            = 3,
+            `Terugtrekken bij pijn`                = 4,
+            `Localiseren pijn`                     = 5,
+            `Voert opdrachten uit`                 = 6)
+        )"
+      ))
+    ),
+    vgcs = Map(list, ids = c(6735L, 13066L), table = rep("listitems", 2L),
+      sub_var = rep("itemid", 2L),
+      callback = strip_ws(c(
+        "apply_map(
+          c(`Geen reactie (geen zichtbare poging tot praten)` = 1,
+            `Onbegrijpelijke geluiden`                        = 2,
+            `Onduidelijke woorden (pogingen tot communicatie,
+             maar onduidelijk)`                               = 3,
+            `Verwarde conversatie`                            = 4,
+            `Helder en adequaat (communicatie mogelijk)`      = 5)
+        )",
+        "apply_map(
+          c(`Geen geluid`            = 1,
+            `Onverstaanbare woorden` = 2,
+            `Onjuiste woorden`       = 3,
+            `Verwarde taal`          = 4,
+            `Georiënteerd`           = 5)
+        )"
+      ))
+    ),
+    trach = list(
+      list(ids = 6735L, table = "listitems", sub_var = "itemid",
+           callback = "transform_fun(comp_na(`==`, 'Geïntubeerd'))")
+    )
+  )
+)
+
+dem_itms <- wrap_lst(
+  val_var = c(age = "agegroup", weight = "weightgroup", sex = "gender"),
+  table = "admissions",
   callback = strip_ws(
     c("apply_map(c(`18-39` = 30, `40-49`   = 45, `50-59` = 55, `60-69` = 65,
                    `70-79` = 75, `80+`     = 90))",
@@ -110,7 +171,34 @@ dem_itms <- wrap_list(table = "admissions",
   class = "col_itm"
 )
 
-cfg <- c(cbk_itms, num_itms, drg_itms, dem_itms)
+cfg <- list(
+  vent_start = list(
+    sources = list(
+      aumc = list(
+        list(ids = 9328L, sub_var = "itemid", table = "processitems",
+             callback = "transform_fun(set_true)")
+      )
+    )
+  ),
+  vent_end = list(
+    sources = list(
+      aumc = list(
+        list(ids = 9328L, sub_var = "itemid", index_var = "stop",
+             table = "processitems", callback = "transform_fun(set_true)")
+      )
+    )
+  ),
+  ins = list(
+    sources = list(
+      aumc = list(
+        list(ids = c(6929, 4218, 2663), sub_var = "itemid",
+             table = "drugitems")
+      )
+    )
+  )
+)
+
+cfg <- c(cbk_itms, num_itms, drg_itms, dem_itms, gcs_itms, cfg)
 cfg <- cfg[order(names(cfg))]
 
 cfg <- lapply(cfg, function(x) {

@@ -1,10 +1,10 @@
 {
-  "admissions": {
+  "age": {
     "sources": {
       "aumc": [
         {
+          "val_var": "agegroup",
           "table": "admissions",
-          "itm_vars": "agegroup",
           "callback": "apply_map(c(`18-39` = 30, `40-49` = 45, `50-59` = 55, `60-69` = 65, `70-79` = 75, `80+` = 90))",
           "class": "col_itm"
         }
@@ -196,9 +196,13 @@
     "sources": {
       "aumc": [
         {
-          "ids": 1442,
+          "ids": 7178,
           "table": "drugitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "end_var": "stop",
+          "rel_weight": "doserateperkg",
+          "rate_uom": "doserateunit",
+          "callback": "aumc_vasos"
         }
       ]
     }
@@ -207,9 +211,13 @@
     "sources": {
       "aumc": [
         {
-          "ids": 6983,
+          "ids": 7179,
           "table": "drugitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "end_var": "stop",
+          "rel_weight": "doserateperkg",
+          "rate_uom": "doserateunit",
+          "callback": "aumc_vasos"
         }
       ]
     }
@@ -218,9 +226,31 @@
     "sources": {
       "aumc": [
         {
+          "ids": 6732,
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Geen reactie` = 1, `Reactie op pijnprikkel` = 2, `Reactie op verbale prikkel` = 3, `Spontane reactie` = 4) )"
+        },
+        {
           "ids": 13077,
-          "table": "numericitems",
-          "sub_var": "itemid"
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Niet` = 1, `Op pijn` = 2, `Op aanspreken` = 3, `Spontaan` = 4) )"
+        }
+      ]
+    }
+  },
+  "epi": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6818,
+          "table": "drugitems",
+          "sub_var": "itemid",
+          "end_var": "stop",
+          "rel_weight": "doserateperkg",
+          "rate_uom": "doserateunit",
+          "callback": "aumc_vasos"
         }
       ]
     }
@@ -297,9 +327,9 @@
     "sources": {
       "aumc": [
         {
-          "ids": [2663, 4218, 6929],
-          "table": "drugitems",
-          "sub_var": "itemid"
+          "ids": [6929, 4218, 2663],
+          "sub_var": "itemid",
+          "table": "drugitems"
         }
       ]
     }
@@ -410,9 +440,16 @@
     "sources": {
       "aumc": [
         {
+          "ids": 6734,
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Geen reactie` = 1, `Strekken` = 2, `Decortatie reflex (abnormaal buigen)` = 3, `Spastische reactie (terugtrekken)` = 4, `Localiseert pijn` = 5, `Volgt verbale commando's op` = 6) )"
+        },
+        {
           "ids": 13072,
-          "table": "numericitems",
-          "sub_var": "itemid"
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Geen reactie` = 1, `Strekken op pijn` = 2, `Abnormaal buigen bij pijn` = 3, `Terugtrekken bij pijn` = 4, `Localiseren pijn` = 5, `Voert opdrachten uit` = 6) )"
         }
       ]
     }
@@ -432,9 +469,13 @@
     "sources": {
       "aumc": [
         {
-          "ids": 8676,
+          "ids": 7229,
           "table": "drugitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "end_var": "stop",
+          "rel_weight": "doserateperkg",
+          "rate_uom": "doserateunit",
+          "callback": "aumc_vasos"
         }
       ]
     }
@@ -539,13 +580,14 @@
       ]
     }
   },
-  "tgcs": {
+  "sex": {
     "sources": {
       "aumc": [
         {
-          "ids": 6732,
-          "table": "numericitems",
-          "sub_var": "itemid"
+          "val_var": "gender",
+          "table": "admissions",
+          "callback": "apply_map(c(Vrouw = 'Female', Man = 'Male'))",
+          "class": "col_itm"
         }
       ]
     }
@@ -561,6 +603,18 @@
       ]
     }
   },
+  "trach": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6735,
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "transform_fun(comp_na(`==`, 'Geïntubeerd'))"
+        }
+      ]
+    }
+  },
   "urine": {
     "sources": {
       "aumc": [
@@ -572,13 +626,45 @@
       ]
     }
   },
+  "vent_end": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 9328,
+          "sub_var": "itemid",
+          "index_var": "stop",
+          "table": "processitems",
+          "callback": "transform_fun(set_true)"
+        }
+      ]
+    }
+  },
+  "vent_start": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 9328,
+          "sub_var": "itemid",
+          "table": "processitems",
+          "callback": "transform_fun(set_true)"
+        }
+      ]
+    }
+  },
   "vgcs": {
     "sources": {
       "aumc": [
         {
+          "ids": 6735,
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Geen reactie (geen zichtbare poging tot praten)` = 1, `Onbegrijpelijke geluiden` = 2, `Onduidelijke woorden (pogingen tot communicatie, maar onduidelijk)` = 3, `Verwarde conversatie` = 4, `Helder en adequaat (communicatie mogelijk)` = 5) )"
+        },
+        {
           "ids": 13066,
-          "table": "numericitems",
-          "sub_var": "itemid"
+          "table": "listitems",
+          "sub_var": "itemid",
+          "callback": "apply_map( c(`Geen geluid` = 1, `Onverstaanbare woorden` = 2, `Onjuiste woorden` = 3, `Verwarde taal` = 4, `Georiënteerd` = 5) )"
         }
       ]
     }
@@ -594,25 +680,13 @@
       ]
     }
   },
-  "54": {
+  "weight": {
     "sources": {
       "aumc": [
         {
+          "val_var": "weightgroup",
           "table": "admissions",
-          "itm_vars": "weightgroup",
           "callback": "apply_map(c(`59-` = 50, `60-69` = 65, `70-79` = 75, `80-89` = 85, `90-99` = 95, `100-109` = 105, `110+` = 120))",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
-  "55": {
-    "sources": {
-      "aumc": [
-        {
-          "table": "admissions",
-          "itm_vars": "gender",
-          "callback": "apply_map(c(Vrouw = 'Female', Man = 'Male'))",
           "class": "col_itm"
         }
       ]
