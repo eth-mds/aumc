@@ -171,29 +171,32 @@ dem_itms <- wrap_lst(
   class = "col_itm"
 )
 
-cfg <- list(
-  vent_start = list(
-    sources = list(
-      aumc = list(
-        list(ids = 9328L, sub_var = "itemid", table = "processitems",
-             callback = "transform_fun(set_true)")
-      )
-    )
-  ),
-  vent_end = list(
-    sources = list(
-      aumc = list(
-        list(ids = 9328L, sub_var = "itemid", index_var = "stop",
-             table = "processitems", callback = "transform_fun(set_true)")
-      )
-    )
-  ),
-  ins = list(
-    sources = list(
-      aumc = list(
-        list(ids = c(6929, 4218, 2663), sub_var = "itemid",
-             table = "drugitems")
-      )
+cfg <- wrap_src(
+  list(
+    vent_start = list(
+      list(ids = 9328L, sub_var = "itemid", table = "processitems",
+           callback = "transform_fun(set_true)")
+    ),
+    vent_end = list(
+      list(ids = 9328L, sub_var = "itemid", index_var = "stop",
+           table = "processitems", callback = "transform_fun(set_true)")
+    ),
+    ins = list(
+      list(ids = c(6929, 4218, 2663), sub_var = "itemid",
+           table = "drugitems")
+    ),
+    abx = list(
+      list(ids = c(
+            2L,    13L,    19L,    24L,    28L,    29L,    57L,    59L,
+           82L,   103L,   240L,   247L,   333L,  1133L,  1199L,  1300L,
+         1371L,  1795L,  2284L,  2834L,  3237L,  3741L,  5576L,  6834L,
+         6847L,  6871L,  6919L,  6948L,  6953L,  6958L,  7044L,  7064L,
+         7185L,  7187L,  7208L,  7227L,  7235L,  8064L,  8394L,  8942L,
+         9029L,  9030L,  9052L,  9070L,  9117L,  9128L,  9133L,  9142L,
+         9151L,  9152L, 12262L, 12389L, 12398L, 12956L, 12997L, 13057L,
+        13094L, 13102L, 15591L, 18860L, 19137L, 19773L, 20563L, 23166L,
+        24241L, 25776L, 27617L, 29321L), table = "drugitems",
+      sub_var = "itemid", callback = "transform_fun(set_true)")
     )
   )
 )
