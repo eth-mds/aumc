@@ -1,0 +1,44 @@
+## Glasgow Coma Score on AUMC
+
+All of the below items can be found in the _listitems_ table.
+
+- GCS Eye
+  - itemid 6732
+    - "Spontane reactie"  = 4
+    - "Geen reactie"      = 1
+    - "Reactie op pijnprikkel" = 2
+    - "Reactie op verbale prikkel" = 3
+  - itemid 13077
+    - "Spontaan" = 4
+    - "Niet" = 1
+    - "Op aanspreken" = 3
+    - "Op pijn" = 2
+- GCS Motor
+  - itemid 6734
+    - "Volgt verbale commando's op" = 6
+    - "Geen reactie" = 1
+    - "Localiseert pijn" = 5
+    - "Spastische reactie (terugtrekken)"  = 4
+    - "Decortatie reflex (abnormaal buigen)" = 3
+    - "Strekken" = 2
+  - itemid 13072
+    - "Voert opdrachten uit" = 6
+    - "Geen reactie" = 1
+    - "Terugtrekken bij pijn" = 4
+    - "Localiseren pijn" = 5
+    - "Strekken op pijn" = 2
+    - "Abnormaal buigen bij pijn" = 3
+- GCS Verbal
+  - itemid 6735
+    - "Helder en adequaat (communicatie mogelijk)" = 5
+    - "Geïntubeerd" = **intubated** - beware of this!
+    - "Verwarde conversatie" = 4
+    - "Geen reactie (geen zichtbare poging tot praten)" = 1
+    - "Onduidelijke woorden (pogingen tot communicatie, maar onduidelijk)" = 3
+    - "Onbegrijpelijke geluiden" = 2
+  - itemid 13066
+    - "Georiënteerd" = 5
+    - "Geen geluid" = 1
+    - "Onverstaanbare woorden" = 2
+    - "Verwarde taal" = 4
+    - "Onjuiste woorden" = 3
