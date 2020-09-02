@@ -197,6 +197,10 @@ cfg <- wrap_src(
         13094L, 13102L, 15591L, 18860L, 19137L, 19773L, 20563L, 23166L,
         24241L, 25776L, 27617L, 29321L), table = "drugitems",
       sub_var = "itemid", callback = "transform_fun(set_true)")
+    ),
+    death = list(
+      list(val_var = "dateofdeath", table = "admissions",
+           callback = "transform_fun(Negate(is.na))", class = "col_itm")
     )
   )
 )

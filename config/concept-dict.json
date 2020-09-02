@@ -204,6 +204,18 @@
       ]
     }
   },
+  "death": {
+    "sources": {
+      "aumc": [
+        {
+          "val_var": "dateofdeath",
+          "table": "admissions",
+          "callback": "transform_fun(Negate(is.na))",
+          "class": "col_itm"
+        }
+      ]
+    }
+  },
   "dobu": {
     "sources": {
       "aumc": [
