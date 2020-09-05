@@ -208,9 +208,10 @@
     "sources": {
       "aumc": [
         {
-          "val_var": "dateofdeath",
           "table": "admissions",
-          "callback": "transform_fun(Negate(is.na))",
+          "index_var": "dateofdeath",
+          "val_var": "dischargedat",
+          "callback": "aumc_death",
           "class": "col_itm"
         }
       ]

@@ -34,3 +34,11 @@ aumc_vasos <- function(x, val_var, unit_var, end_var, rel_weight,
 
   res
 }
+
+aumc_death <- function(x, val_var, ...) {
+
+  idx <- index_var(x)
+
+  x <- x[, c(val_var) := is_true(get(idx) - get(val_var) < hours(72L))]
+  x
+}
