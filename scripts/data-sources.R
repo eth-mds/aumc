@@ -121,8 +121,7 @@ info <- list(
 tables <- names(info)
 
 cols <- lapply(info, function(tbl) {
-  Map(function(name, spec) c(list(name = name, col = name), spec),
-      names(tbl), tbl, USE.NAMES = FALSE)
+  Map(function(name, spec) c(list(name = name), spec), names(tbl), tbl)
 })
 
 defaults <- list(
@@ -183,7 +182,7 @@ part <- list(
   )
 )
 
-tables <- Map(list, name = tables, files = paste0(tables, ".csv"),
+tables <- Map(list, files = setNames(paste0(tables, ".csv"), tables),
                defaults = defaults[tables], num_rows = n_row[tables],
                cols = cols[tables])
 
@@ -198,7 +197,7 @@ res <- list(
     icustay = list(id = "admissionid", position = 2L, start = "admittedat",
                    end = "dischargedat", table = "admissions")
   ),
-  tables = unname(tables)
+  tables = tables
 )
 
 ricu::set_config(list(res), "data-sources", config_dir)
