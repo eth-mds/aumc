@@ -217,32 +217,58 @@
       ]
     }
   },
-  "dobu": {
+  "dobu_dur": {
     "sources": {
       "aumc": [
         {
           "ids": 7178,
           "table": "drugitems",
           "sub_var": "itemid",
-          "end_var": "stop",
-          "rel_weight": "doserateperkg",
-          "rate_uom": "doserateunit",
-          "callback": "aumc_vasos"
+          "stop_var": "stop",
+          "grp_var": "orderid",
+          "callback": "aumc_dur"
         }
       ]
     }
   },
-  "dopa": {
+  "dobu_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 7178,
+          "table": "drugitems",
+          "sub_var": "itemid",
+          "rel_weight": "doserateperkg",
+          "rate_uom": "doserateunit",
+          "callback": "aumc_rate"
+        }
+      ]
+    }
+  },
+  "dopa_dur": {
     "sources": {
       "aumc": [
         {
           "ids": 7179,
           "table": "drugitems",
           "sub_var": "itemid",
-          "end_var": "stop",
+          "stop_var": "stop",
+          "grp_var": "orderid",
+          "callback": "aumc_dur"
+        }
+      ]
+    }
+  },
+  "dopa_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 7179,
+          "table": "drugitems",
+          "sub_var": "itemid",
           "rel_weight": "doserateperkg",
           "rate_uom": "doserateunit",
-          "callback": "aumc_vasos"
+          "callback": "aumc_rate"
         }
       ]
     }
@@ -265,17 +291,30 @@
       ]
     }
   },
-  "epi": {
+  "epi_dur": {
     "sources": {
       "aumc": [
         {
           "ids": 6818,
           "table": "drugitems",
           "sub_var": "itemid",
-          "end_var": "stop",
+          "stop_var": "stop",
+          "grp_var": "orderid",
+          "callback": "aumc_dur"
+        }
+      ]
+    }
+  },
+  "epi_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6818,
+          "table": "drugitems",
+          "sub_var": "itemid",
           "rel_weight": "doserateperkg",
           "rate_uom": "doserateunit",
-          "callback": "aumc_vasos"
+          "callback": "aumc_rate"
         }
       ]
     }
@@ -310,6 +349,18 @@
           "ids": [6777, 11423, 11545],
           "table": "numericitems",
           "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "height": {
+    "sources": {
+      "aumc": [
+        {
+          "val_var": "heightgroup",
+          "table": "admissions",
+          "callback": "apply_map(c(`159-` = 150, `160-169` = 165, `170-179` = 175, `180-189` = 185, `190+` = 200))",
+          "class": "col_itm"
         }
       ]
     }
@@ -379,6 +430,24 @@
           "sub_var": "itemid"
         }
       ]
+    }
+  },
+  "los_hosp": {
+    "sources": {
+      "aumc": {
+        "callback": "los_callback",
+        "win_type": "hadm",
+        "class": "fun_itm"
+      }
+    }
+  },
+  "los_icu": {
+    "sources": {
+      "aumc": {
+        "callback": "los_callback",
+        "win_type": "icustay",
+        "class": "fun_itm"
+      }
     }
   },
   "lymph": {
@@ -490,17 +559,30 @@
       ]
     }
   },
-  "norepi": {
+  "norepi_dur": {
     "sources": {
       "aumc": [
         {
           "ids": 7229,
           "table": "drugitems",
           "sub_var": "itemid",
-          "end_var": "stop",
+          "stop_var": "stop",
+          "grp_var": "orderid",
+          "callback": "aumc_dur"
+        }
+      ]
+    }
+  },
+  "norepi_rate": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 7229,
+          "table": "drugitems",
+          "sub_var": "itemid",
           "rel_weight": "doserateperkg",
           "rate_uom": "doserateunit",
-          "callback": "aumc_vasos"
+          "callback": "aumc_rate"
         }
       ]
     }

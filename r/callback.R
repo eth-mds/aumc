@@ -1,38 +1,26 @@
 
-aumc_weight <- new.env()
+aumc_rate <- function(x, val_var, unit_var, rel_weight, rate_uom, env, ...) {
 
-delayedAssign("patientid",
-  load_concepts("weight", "aumc", verbose = FALSE, id_type = "patient"),
-  assign.env = aumc_weight
-)
-delayedAssign("admissionid",
-  load_concepts("weight", "aumc", verbose = FALSE, id_type = "icustay"),
-  assign.env = aumc_weight
-)
+  mg_to_mcg <- convert_unit("mg",  binary_op(`*`, 1000), "mcg")
+  hr_to_min <- convert_unit("uur", binary_op(`/`, 60),   "min")
 
-aumc_vasos <- function(x, val_var, unit_var, end_var, rel_weight,
-                       rate_uom, env, ...) {
+  res <- rm_na(x, c(unit_var, rate_uom), "any")
+  res <- mg_to_mcg(res, val_var, unit_var)
+  res <- hr_to_min(res, val_var, rate_uom)
 
-  x <- x[get(unit_var) == "mg", c(val_var, unit_var) := list(
-    get(val_var) * 1000, "mcg"
+  res <- add_weight(res, env, "weight")
+
+  res <- res[!get(rel_weight), c(val_var) := get(val_var) / get("weight")]
+  res <- res[get(unit_var) == "\u00b5g", c(unit_var) := "mcg"]
+  res <- res[, c(unit_var) := paste(
+    get(unit_var), get(rate_uom), sep = "/kg/"
   )]
-  x <- x[get(rate_uom) == "uur", c(val_var, rate_uom) := list(
-    get(val_var) / 60, "min"
-  )]
-
-  wgt <- get(id_var(x), envir = aumc_weight)
-  res <- merge(x, wgt, all.x = TRUE)
-
-  res <- res[!get(rel_weight), c(val_var, rel_weight) := list(
-    get(val_var) / get("weight"), TRUE
-  )]
-  res <- res[get(rel_weight), c(unit_var) := list(
-    paste0(get(unit_var), "/kg/", get(rate_uom))
-  )]
-
-  res <- res[, c("weight") := NULL]
 
   res
+}
+
+aumc_dur <- function(x, val_var, stop_var, grp_var, ...) {
+  calc_dur(x, val_var, index_var(x), stop_var, grp_var)
 }
 
 aumc_death <- function(x, val_var, ...) {

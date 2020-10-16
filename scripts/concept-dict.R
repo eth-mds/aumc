@@ -78,17 +78,22 @@ cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
   )
 )
 
-drg_itms <- list(
+vasos <- list(
   norepi = 7229,
   epi = 6818,
   dopa = 7179,
   dobu = 7178
 )
 
-drg_itms <- wrap_lst(ids = prep_ids(drg_itms), table = "drugitems",
-                      sub_var = "itemid", end_var = "stop",
-                      rel_weight = "doserateperkg", rate_uom = "doserateunit",
-                      callback = "aumc_vasos")
+rate_itms <- setNames(vasos, paste0(names(vasos), "_rate"))
+rate_itms <- wrap_lst(ids = prep_ids(rate_itms), table = "drugitems",
+                     sub_var = "itemid", rel_weight = "doserateperkg",
+                     rate_uom = "doserateunit", callback = "aumc_rate")
+
+dur_itms <- setNames(vasos, paste0(names(vasos), "_dur"))
+dur_itms <- wrap_lst(ids = prep_ids(dur_itms), table = "drugitems",
+                     sub_var = "itemid", stop_var = "stop",
+                     grp_var = "orderid", callback = "aumc_dur")
 
 gcs_itms <- wrap_src(
   list(
@@ -158,14 +163,30 @@ gcs_itms <- wrap_src(
 )
 
 dem_itms <- wrap_lst(
-  val_var = c(age = "agegroup", weight = "weightgroup", sex = "gender"),
+  val_var = c(age = "agegroup", weight = "weightgroup", height = "heightgroup",
+              sex = "gender"),
   table = "admissions",
-  callback = strip_ws(
-    c("apply_map(c(`18-39` = 30, `40-49`   = 45, `50-59` = 55, `60-69` = 65,
-                   `70-79` = 75, `80+`     = 90))",
-      "apply_map(c(`59-`   = 50, `60-69`   = 65, `70-79` = 75, `80-89` = 85,
-                  `90-99`  = 95, `100-109` = 105, `110+` = 120))",
-      "apply_map(c(Vrouw   = 'Female', Man = 'Male'))"
+  callback = strip_ws(c(
+    "apply_map(c(`18-39`   = 30,
+                 `40-49`   = 45,
+                 `50-59`   = 55,
+                 `60-69`   = 65,
+                 `70-79`   = 75,
+                 `80+`     = 90))",
+    "apply_map(c(`59-`     = 50,
+                 `60-69`   = 65,
+                 `70-79`   = 75,
+                 `80-89`   = 85,
+                 `90-99`   = 95,
+                 `100-109` = 105,
+                 `110+`    = 120))",
+    "apply_map(c(`159-`    = 150,
+                 `160-169` = 165,
+                 `170-179` = 175,
+                 `180-189` = 185,
+                 `190+`    = 200))",
+    "apply_map(c(Vrouw     = 'Female',
+                 Man       = 'Male'))"
     )
   ),
   class = "col_itm"
@@ -202,11 +223,17 @@ cfg <- wrap_src(
       list(table = "admissions", index_var = "dateofdeath",
            val_var = "dischargedat", callback = "aumc_death",
            class = "col_itm")
+    ),
+    los_icu = list(
+      callback = "los_callback", win_type = "icustay", class = "fun_itm"
+    ),
+    los_hosp = list(
+      callback = "los_callback", win_type = "hadm", class = "fun_itm"
     )
   )
 )
 
-cfg <- c(cbk_itms, num_itms, drg_itms, dem_itms, gcs_itms, cfg)
+cfg <- c(cbk_itms, num_itms, rate_itms, dur_itms, dem_itms, gcs_itms, cfg)
 cfg <- cfg[order(names(cfg))]
 
 cfg <- lapply(cfg, function(x) {
