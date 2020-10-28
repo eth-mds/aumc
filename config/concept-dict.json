@@ -434,20 +434,24 @@
   },
   "los_hosp": {
     "sources": {
-      "aumc": {
-        "callback": "los_callback",
-        "win_type": "hadm",
-        "class": "fun_itm"
-      }
+      "aumc": [
+        {
+          "callback": "los_callback",
+          "win_type": "hadm",
+          "class": "fun_itm"
+        }
+      ]
     }
   },
   "los_icu": {
     "sources": {
-      "aumc": {
-        "callback": "los_callback",
-        "win_type": "icustay",
-        "class": "fun_itm"
-      }
+      "aumc": [
+        {
+          "callback": "los_callback",
+          "win_type": "icustay",
+          "class": "fun_itm"
+        }
+      ]
     }
   },
   "lymph": {

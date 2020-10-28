@@ -225,10 +225,10 @@ cfg <- wrap_src(
            class = "col_itm")
     ),
     los_icu = list(
-      callback = "los_callback", win_type = "icustay", class = "fun_itm"
+      list(callback = "los_callback", win_type = "icustay", class = "fun_itm")
     ),
     los_hosp = list(
-      callback = "los_callback", win_type = "hadm", class = "fun_itm"
+      list(callback = "los_callback", win_type = "hadm", class = "fun_itm")
     )
   )
 )
