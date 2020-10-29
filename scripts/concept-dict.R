@@ -42,7 +42,8 @@ num_itms <- list(
   sbp = 6641,
   map = 6642,
   dbp = 6643,
-  urine = 8794
+  urine = 8794,
+  ckmb = 6824
 )
 
 num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
@@ -164,7 +165,7 @@ gcs_itms <- wrap_src(
 
 dem_itms <- wrap_lst(
   val_var = c(age = "agegroup", weight = "weightgroup", height = "heightgroup",
-              sex = "gender"),
+              sex = "gender", adm = "specialty"),
   table = "admissions",
   callback = strip_ws(c(
     "apply_map(c(`18-39`   = 30,
@@ -186,7 +187,34 @@ dem_itms <- wrap_lst(
                  `180-189` = 185,
                  `190+`    = 200))",
     "apply_map(c(Vrouw     = 'Female',
-                 Man       = 'Male'))"
+                 Man       = 'Male'))",
+    "apply_map(c(Cardiochirurgie                = 'surg',
+                 Cardiologie                    = 'med',
+                 ders                           = 'other',
+                 Gynaecologie                   = 'other',
+                 `Heelkunde Gastro-enterologie` = 'surg',
+                 `Heelkunde Longen/Oncologie`   = 'surg',
+                 `Heelkunde Oncologie`          = 'surg',
+                 Hematologie                    = 'med',
+                 `Intensive Care Volwassenen`   = 'other',
+                 Inwendig                       = 'med',
+                 `Keel, Neus & Oorarts`         = 'surg',
+                 Longziekte                     = 'med',
+                 `Maag-,Darm-,Leverziekten`     = 'med',
+                 Mondheelkunde                  = 'surg',
+                 Nefrologie                     = 'med',
+                 Neurochirurgie                 = 'surg',
+                 Neurologie                     = 'med',
+                 Obstetrie                      = 'other',
+                 Oncologie Inwendig             = 'med',
+                 Oogheelkunde                   = 'surg',
+                 Orthopedie                     = 'surg',
+                 Plastische chirurgie           = 'surg',
+                 Reumatologie                   = 'med',
+                 Traumatologie                  = 'surg',
+                 Urologie                       = 'surg',
+                 Vaatchirurgie                  = 'surg',
+                 Verloskunde                    = 'other'))"
     )
   ),
   class = "col_itm"
@@ -253,5 +281,7 @@ cfg <- lapply(cfg, function(x) {
 
   x
 })
+
+message("writing config to ", config_dir)
 
 ricu::set_config(cfg, "concept-dict", config_dir)
