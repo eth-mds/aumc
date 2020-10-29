@@ -1,8 +1,8 @@
 
 aumc_rate <- function(x, val_var, unit_var, rel_weight, rate_uom, env, ...) {
 
-  mg_to_mcg <- convert_unit("mg",  binary_op(`*`, 1000), "mcg")
-  hr_to_min <- convert_unit("uur", binary_op(`/`, 60),   "min")
+  mg_to_mcg <- convert_unit(binary_op(`*`, 1000), "mcg", "mg")
+  hr_to_min <- convert_unit(binary_op(`/`, 60),   "min", "uur")
 
   res <- rm_na(x, c(unit_var, rate_uom), "any")
   res <- mg_to_mcg(res, val_var, unit_var)
