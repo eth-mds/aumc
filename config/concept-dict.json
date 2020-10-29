@@ -793,6 +793,17 @@
       ]
     }
   },
+  "temp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [8658, 8659, 8662, 11889, 13059, 13060, 13063, 13952, 16110],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "tnt": {
     "sources": {
       "aumc": [

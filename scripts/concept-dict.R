@@ -48,7 +48,8 @@ num_itms <- list(
   fgn = c(6776, 9989, 10175),
   pt = 6789,
   hbco = 11690,
-  hba1c = c(11812, 16166)
+  hba1c = c(11812, 16166),
+  temp = c(8658, 8659, 8662, 13060, 13063, 16110, 11889, 13952, 13059)
 )
 
 num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
