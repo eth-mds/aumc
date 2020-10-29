@@ -43,7 +43,12 @@ num_itms <- list(
   map = 6642,
   dbp = 6643,
   urine = 8794,
-  ckmb = 6824
+  ckmb = 6824,
+  esr = c(6808, 11902),
+  fgn = c(6776, 9989, 10175),
+  pt = 6789,
+  hbco = 11690,
+  hba1c = c(11812, 16166)
 )
 
 num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
@@ -60,7 +65,8 @@ cbk_itms <- list(
   mchc = 18666,
   mch = 11679,
   phos = c(9935, 6828),
-  bun = c(9943, 6850)
+  bun = c(9943, 6850),
+  etco2 = c(6707, 8884, 8885, 9658, 12805, 12356)
 )
 
 cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
@@ -75,7 +81,8 @@ cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
     "transform_fun(binary_op(`*`, 1.611344))",
     "transform_fun(binary_op(`*`, 0.016114))",
     "transform_fun(binary_op(`*`, 3.097521))",
-    "transform_fun(binary_op(`*`, 2.8))"
+    "transform_fun(binary_op(`*`, 2.8))",
+    "convert_unit(binary_op(`*`, 7.6), 'mmHg', 'None|Geen')"
   )
 )
 

@@ -342,6 +342,40 @@
       ]
     }
   },
+  "esr": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6808, 11902],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "etco2": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6707, 8884, 8885, 9658, 12356, 12805],
+          "table": "numericitems",
+          "sub_var": "itemid",
+          "callback": "convert_unit(binary_op(`*`, 7.6), 'mmHg', 'None|Geen')"
+        }
+      ]
+    }
+  },
+  "fgn": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6776, 9989, 10175],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "fio2": {
     "sources": {
       "aumc": [
@@ -361,6 +395,28 @@
           "table": "numericitems",
           "sub_var": "itemid",
           "callback": "transform_fun(binary_op(`*`, 18.016))"
+        }
+      ]
+    }
+  },
+  "hba1c": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [11812, 16166],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "hbco": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 11690,
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
       ]
     }
@@ -675,6 +731,17 @@
       "aumc": [
         {
           "ids": [7433, 9996, 21214],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "pt": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6789,
           "table": "numericitems",
           "sub_var": "itemid"
         }

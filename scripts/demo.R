@@ -13,7 +13,7 @@ load_concepts(gluc, id_type = "patient")
 load_concepts(gluc, id_type = "icustay")
 
 load_concepts("glucose", "mimic_demo")
-load_concepts("glucose", "aumc")
+load_concepts("glu", "aumc")
 
 unique_fun <- function(...) !duplicated(data.table::setDT(list(...)))
 
