@@ -6,7 +6,18 @@
           "ids": [2, 13, 19, 24, 28, 29, 57, 59, 82, 103, 240, 247, 333, 1133, 1199, 1300, 1371, 1795, 2284, 2834, 3237, 3741, 5576, 6834, 6847, 6871, 6919, 6948, 6953, 6958, 7044, 7064, 7185, 7187, 7208, 7227, 7235, 8064, 8394, 8942, 9029, 9030, 9052, 9070, 9117, 9128, 9133, 9142, 9151, 9152, 12262, 12389, 12398, 12956, 12997, 13057, 13094, 13102, 15591, 18860, 19137, 19773, 20563, 23166, 24241, 25776, 27617, 29321],
           "table": "drugitems",
           "sub_var": "itemid",
-          "callback": "transform_fun(set_true)"
+          "callback": "transform_fun(set_val(TRUE))"
+        }
+      ]
+    }
+  },
+  "adh": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 12467,
+          "sub_var": "itemid",
+          "table": "drugitems"
         }
       ]
     }
@@ -97,7 +108,9 @@
         {
           "ids": [6807, 9994],
           "table": "numericitems",
-          "sub_var": "itemid"
+          "sub_var": "itemid",
+          "callback": "aumc_base_excess",
+          "dir_var": "tag"
         }
       ]
     }
@@ -121,6 +134,28 @@
           "table": "numericitems",
           "sub_var": "itemid",
           "callback": "transform_fun(binary_op(`*`, 0.058467))"
+        }
+      ]
+    }
+  },
+  "bili_dir": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6812,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "bnd": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6796, 11586],
+          "table": "numericitems",
+          "sub_var": "itemid"
         }
       ]
     }
@@ -314,6 +349,17 @@
       ]
     }
   },
+  "eos": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6773,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "epi_dur": {
     "sources": {
       "aumc": [
@@ -482,7 +528,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [6929, 4218, 2663],
+          "ids": [9014, 19129, 7624],
           "sub_var": "itemid",
           "table": "drugitems"
         }
@@ -507,17 +553,6 @@
           "ids": [6837, 9580, 10053],
           "table": "numericitems",
           "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "los_hosp": {
-    "sources": {
-      "aumc": [
-        {
-          "callback": "los_callback",
-          "win_type": "hadm",
-          "class": "fun_itm"
         }
       ]
     }
@@ -642,6 +677,17 @@
       ]
     }
   },
+  "neut": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 6786,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "norepi_dur": {
     "sources": {
       "aumc": [
@@ -759,6 +805,40 @@
       ]
     }
   },
+  "rass": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 14444,
+          "sub_var": "itemid",
+          "table": "listitems",
+          "callback": "transform_fun(aumc_rass_transform)"
+        }
+      ]
+    }
+  },
+  "rbc": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [6774, 9962],
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "rdw": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": 18952,
+          "table": "numericitems",
+          "sub_var": "itemid"
+        }
+      ]
+    }
+  },
   "resp": {
     "sources": {
       "aumc": [
@@ -766,6 +846,18 @@
           "ids": [8874, 12266],
           "table": "numericitems",
           "sub_var": "itemid"
+        }
+      ]
+    }
+  },
+  "samp": {
+    "sources": {
+      "aumc": [
+        {
+          "ids": [8097, 8418, 8588, 9189, 9190, 9191, 9192, 9193, 9194, 9195, 9197, 9198, 9200, 9202, 9203, 9204, 9205, 13024, 19663, 19664],
+          "table": "procedureorderitems",
+          "sub_var": "itemid",
+          "callback": "transform_fun(set_val(TRUE))"
         }
       ]
     }
@@ -797,7 +889,7 @@
     "sources": {
       "aumc": [
         {
-          "ids": [8658, 8659, 8662, 11889, 13059, 13060, 13063, 13952, 16110],
+          "ids": [8658, 13952, 16110],
           "table": "numericitems",
           "sub_var": "itemid"
         }
@@ -846,7 +938,7 @@
           "sub_var": "itemid",
           "index_var": "stop",
           "table": "processitems",
-          "callback": "transform_fun(set_true)"
+          "callback": "transform_fun(set_val(TRUE))"
         }
       ]
     }
@@ -858,7 +950,7 @@
           "ids": 9328,
           "sub_var": "itemid",
           "table": "processitems",
-          "callback": "transform_fun(set_true)"
+          "callback": "transform_fun(set_val(TRUE))"
         }
       ]
     }

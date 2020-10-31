@@ -24,7 +24,6 @@ num_itms <- list(
   ph = c(12310, 6848),
   pco2 = c(6846, 9990, 21213),
   po2 = c(7433, 9996, 21214),
-  be = c(9994, 6807),
   bicar = c(9992, 6810),
 # anion_gap = c(9559, 8492),
   o2sat = c(6709, 12311, 8903),
@@ -49,7 +48,13 @@ num_itms <- list(
   pt = 6789,
   hbco = 11690,
   hba1c = c(11812, 16166),
-  temp = c(8658, 8659, 8662, 13060, 13063, 16110, 11889, 13952, 13059)
+  temp = c(8658, 16110, 13952),
+  bili_dir = 6812,
+  eos = 6773,
+  neut = 6786,
+  bnd = c(6796, 11586),
+  rbc = c(6774, 9962),
+  rdw = 18952
 )
 
 num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
@@ -67,7 +72,8 @@ cbk_itms <- list(
   mch = 11679,
   phos = c(9935, 6828),
   bun = c(9943, 6850),
-  etco2 = c(6707, 8884, 8885, 9658, 12805, 12356)
+  etco2 = c(6707, 8884, 8885, 9658, 12805, 12356),
+  be = c(9994, 6807)
 )
 
 cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
@@ -83,9 +89,12 @@ cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
     "transform_fun(binary_op(`*`, 0.016114))",
     "transform_fun(binary_op(`*`, 3.097521))",
     "transform_fun(binary_op(`*`, 2.8))",
-    "convert_unit(binary_op(`*`, 7.6), 'mmHg', 'None|Geen')"
+    "convert_unit(binary_op(`*`, 7.6), 'mmHg', 'None|Geen')",
+    "aumc_base_excess"
   )
 )
+
+cbk_itms$be$sources$aumc[[1L]][["dir_var"]] <- "tag"
 
 vasos <- list(
   norepi = 7229,
@@ -232,15 +241,18 @@ cfg <- wrap_src(
   list(
     vent_start = list(
       list(ids = 9328L, sub_var = "itemid", table = "processitems",
-           callback = "transform_fun(set_true)")
+           callback = "transform_fun(set_val(TRUE))")
     ),
     vent_end = list(
       list(ids = 9328L, sub_var = "itemid", index_var = "stop",
-           table = "processitems", callback = "transform_fun(set_true)")
+           table = "processitems", callback = "transform_fun(set_val(TRUE))")
     ),
     ins = list(
-      list(ids = c(6929, 4218, 2663), sub_var = "itemid",
+      list(ids = c(9014, 19129, 7624), sub_var = "itemid",
            table = "drugitems")
+    ),
+    adh = list(
+      list(ids = 12467, sub_var = "itemid", table = "drugitems")
     ),
     abx = list(
       list(ids = c(
@@ -253,7 +265,7 @@ cfg <- wrap_src(
          9151L,  9152L, 12262L, 12389L, 12398L, 12956L, 12997L, 13057L,
         13094L, 13102L, 15591L, 18860L, 19137L, 19773L, 20563L, 23166L,
         24241L, 25776L, 27617L, 29321L), table = "drugitems",
-      sub_var = "itemid", callback = "transform_fun(set_true)")
+      sub_var = "itemid", callback = "transform_fun(set_val(TRUE))")
     ),
     death = list(
       list(table = "admissions", index_var = "dateofdeath",
@@ -263,8 +275,16 @@ cfg <- wrap_src(
     los_icu = list(
       list(callback = "los_callback", win_type = "icustay", class = "fun_itm")
     ),
-    los_hosp = list(
-      list(callback = "los_callback", win_type = "hadm", class = "fun_itm")
+    rass = list(
+      list(ids = 14444, sub_var = "itemid", table = "listitems",
+           callback = "transform_fun(aumc_rass_transform)")
+    ),
+    samp = list(
+      list(ids = c(
+         8097L,  8418L, 8588L, 9189L, 9190L, 9191L, 9192L, 9193L,  9194L,
+         9195L,  9197L, 9198L, 9200L, 9202L, 9203L, 9204L, 9205L, 13024L,
+        19663L, 19664L), table = "procedureorderitems", sub_var = "itemid",
+      callback = "transform_fun(set_val(TRUE))")
     )
   )
 )
