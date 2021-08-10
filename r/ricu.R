@@ -21,51 +21,40 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
                       time_vars = ricu::time_vars(x), ...) {
 
   if (id_hint %in% colnames(x)) {
-    id_col <- id_hint
+    id_sel <- id_hint
   } else {
-    id_col <- "admissionid"
+    id_sel <- intersect(c("admissionid", "patientid"), colnames(x))[1L]
   }
 
-  if (!id_col %in% cols) {
-    cols <- c(id_col, cols)
+  assert_that(is.string(id_sel))
+
+  if (!id_sel %in% cols) {
+    cols <- c(id_sel, cols)
   }
 
   time_vars <- intersect(time_vars, cols)
 
   dat <- load_src(x, {{ rows }}, cols)
 
-  if (!identical(id_hint, id_col)) {
-    dat <- merge(dat, id_map(x, id_hint, id_col), by = id_col)
-  }
-
   if (length(time_vars)) {
 
-    if (!identical(id_col, "patientid")) {
-
-      dat <- merge(dat, id_origin(x, id_col, "time_origin"), by = id_col)
-      on.exit(rm_cols(dat, "time_origin", by_ref = TRUE))
-
-      dat <- dat[, c(time_vars) := lapply(.SD, `-`, get("time_origin")),
-                 .SDcols = time_vars]
-    }
+    assert_that(has_name(dat, id_sel))
 
     dat <- dat[, c(time_vars) := lapply(.SD, ms_as_min), .SDcols = time_vars]
   }
 
-  as_id_tbl(dat, id_vars = id_hint, by_ref = TRUE)
+  as_id_tbl(dat, id_vars = id_sel, by_ref = TRUE)
 }
 
-.S3method("load_difftime", "aumc_tbl", load_aumc)
+.S3method("load_difftime", "aumc_ext_tbl", load_aumc)
 
 aumc_windows <- function(x) {
 
-  cfg <- sort(as_id_cfg(x), decreasing = TRUE)
+  ids <- c("admissionid", "patientid")
+  sta <- c("admittedat", "firstadmittedat")
+  end <- c("dischargedat", "dateofdeath")
 
-  ids <- vctrs::field(cfg, "id")
-  sta <- vctrs::field(cfg, "start")
-  end <- vctrs::field(cfg, "end")
-
-  tbl <- as_src_tbl(x, unique(vctrs::field(cfg, "table")))
+  tbl <- as_src_tbl(x, "admissions")
   mis <- setdiff(sta, colnames(tbl))
 
   assert_that(length(mis) >= 1L)
@@ -85,4 +74,4 @@ aumc_windows <- function(x) {
   as_id_tbl(res, ids[2L], by_ref = TRUE)
 }
 
-.S3method("id_win_helper", "aumc_env", aumc_windows)
+.S3method("id_win_helper", "aumc_ext_env", aumc_windows)

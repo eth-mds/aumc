@@ -3,10 +3,8 @@ r_dir <- file.path(rprojroot::find_root(".git/index"), "r")
 invisible(lapply(list.files(r_dir, full.names = TRUE), source))
 
 wrap_lst <- function(...) wrap_src(lapply(Map(list, ...), list))
-wrap_src <- function(x) Map(list, sources = Map(list, aumc = x))
-
+wrap_src <- function(x) Map(list, sources = Map(list, aumc_ext = x))
 prep_ids <- function(x) lapply(lapply(x, as.integer), sort)
-strip_ws <- function(x) gsub("\\s+", " ", x)
 
 num_itms <- list(
   hct = c(11423, 11545, 6777),
@@ -25,7 +23,6 @@ num_itms <- list(
   pco2 = c(6846, 9990, 21213),
   po2 = c(7433, 9996, 21214),
   bicar = c(9992, 6810),
-# anion_gap = c(9559, 8492),
   o2sat = c(6709, 12311, 8903),
   fio2 = 12279,
   cl = 9930,
@@ -58,7 +55,7 @@ num_itms <- list(
 )
 
 num_itms <- wrap_lst(ids = prep_ids(num_itms), table = "numericitems",
-                      sub_var = "itemid")
+                     sub_var = "itemid")
 
 cbk_itms <- list(
   alb = c(9937, 6801),
@@ -94,222 +91,9 @@ cbk_itms <- wrap_lst(ids = prep_ids(cbk_itms), table = "numericitems",
   )
 )
 
-cbk_itms$be$sources$aumc[[1L]][["dir_var"]] <- "tag"
+cbk_itms$be$sources$aumc_ext[[1L]][["dir_var"]] <- "tag"
 
-vasos <- list(
-  norepi = 7229,
-  epi = 6818,
-  dopa = 7179,
-  dobu = 7178
-)
-
-rate_itms <- setNames(vasos, paste0(names(vasos), "_rate"))
-rate_itms <- wrap_lst(ids = prep_ids(rate_itms), table = "drugitems",
-                     sub_var = "itemid", rel_weight = "doserateperkg",
-                     rate_uom = "doserateunit", callback = "aumc_rate")
-
-dur_itms <- setNames(vasos, paste0(names(vasos), "_dur"))
-dur_itms <- wrap_lst(ids = prep_ids(dur_itms), table = "drugitems",
-                     sub_var = "itemid", stop_var = "stop",
-                     grp_var = "orderid", callback = "aumc_dur")
-
-gcs_itms <- wrap_src(
-  list(
-    egcs = Map(list, ids = c(6732L, 13077L), table = rep("listitems", 2L),
-      sub_var = rep("itemid", 2L),
-      callback = strip_ws(c(
-        "apply_map(
-          c(`Geen reactie`               = 1,
-            `Reactie op pijnprikkel`     = 2,
-            `Reactie op verbale prikkel` = 3,
-            `Spontane reactie`           = 4)
-        )",
-        "apply_map(
-          c(`Niet`                       = 1,
-            `Op pijn`                    = 2,
-            `Op aanspreken`              = 3,
-            `Spontaan`                   = 4)
-        )"
-      ))
-    ),
-    mgcs = Map(list, ids = c(6734L, 13072L), table = rep("listitems", 2L),
-      sub_var = rep("itemid", 2L),
-      callback = strip_ws(c(
-        "apply_map(
-          c(`Geen reactie`                         = 1,
-            `Strekken`                             = 2,
-            `Decortatie reflex (abnormaal buigen)` = 3,
-            `Spastische reactie (terugtrekken)`    = 4,
-            `Localiseert pijn`                     = 5,
-            `Volgt verbale commando's op`          = 6)
-        )",
-        "apply_map(
-          c(`Geen reactie`                         = 1,
-            `Strekken op pijn`                     = 2,
-            `Abnormaal buigen bij pijn`            = 3,
-            `Terugtrekken bij pijn`                = 4,
-            `Localiseren pijn`                     = 5,
-            `Voert opdrachten uit`                 = 6)
-        )"
-      ))
-    ),
-    vgcs = Map(list, ids = c(6735L, 13066L), table = rep("listitems", 2L),
-      sub_var = rep("itemid", 2L),
-      callback = strip_ws(c(
-        "apply_map(
-          c(`Geen reactie (geen zichtbare poging tot praten)` = 1,
-            `Onbegrijpelijke geluiden`                        = 2,
-            `Onduidelijke woorden (pogingen tot communicatie,
-             maar onduidelijk)`                               = 3,
-            `Verwarde conversatie`                            = 4,
-            `Helder en adequaat (communicatie mogelijk)`      = 5)
-        )",
-        "apply_map(
-          c(`Geen geluid`            = 1,
-            `Onverstaanbare woorden` = 2,
-            `Onjuiste woorden`       = 3,
-            `Verwarde taal`          = 4,
-            `Georiënteerd`           = 5)
-        )"
-      ))
-    ),
-    trach = list(
-      list(ids = 6735L, table = "listitems", sub_var = "itemid",
-           callback = "transform_fun(comp_na(`==`, 'Geïntubeerd'))")
-    )
-  )
-)
-
-dem_itms <- wrap_lst(
-  val_var = c(age = "agegroup", weight = "weightgroup", height = "heightgroup",
-              sex = "gender", adm = "specialty"),
-  table = "admissions",
-  callback = strip_ws(c(
-    "apply_map(c(`18-39`   = 30,
-                 `40-49`   = 45,
-                 `50-59`   = 55,
-                 `60-69`   = 65,
-                 `70-79`   = 75,
-                 `80+`     = 90))",
-    "apply_map(c(`59-`     = 50,
-                 `60-69`   = 65,
-                 `70-79`   = 75,
-                 `80-89`   = 85,
-                 `90-99`   = 95,
-                 `100-109` = 105,
-                 `110+`    = 120))",
-    "apply_map(c(`159-`    = 150,
-                 `160-169` = 165,
-                 `170-179` = 175,
-                 `180-189` = 185,
-                 `190+`    = 200))",
-    "apply_map(c(Vrouw     = 'Female',
-                 Man       = 'Male'))",
-    "apply_map(c(Cardiochirurgie                = 'surg',
-                 Cardiologie                    = 'med',
-                 ders                           = 'other',
-                 Gynaecologie                   = 'other',
-                 `Heelkunde Gastro-enterologie` = 'surg',
-                 `Heelkunde Longen/Oncologie`   = 'surg',
-                 `Heelkunde Oncologie`          = 'surg',
-                 Hematologie                    = 'med',
-                 `Intensive Care Volwassenen`   = 'other',
-                 Inwendig                       = 'med',
-                 `Keel, Neus & Oorarts`         = 'surg',
-                 Longziekte                     = 'med',
-                 `Maag-,Darm-,Leverziekten`     = 'med',
-                 Mondheelkunde                  = 'surg',
-                 Nefrologie                     = 'med',
-                 Neurochirurgie                 = 'surg',
-                 Neurologie                     = 'med',
-                 Obstetrie                      = 'other',
-                 `Oncologie Inwendig`           = 'med',
-                 Oogheelkunde                   = 'surg',
-                 Orthopedie                     = 'surg',
-                 `Plastische chirurgie`         = 'surg',
-                 Reumatologie                   = 'med',
-                 Traumatologie                  = 'surg',
-                 Urologie                       = 'surg',
-                 Vaatchirurgie                  = 'surg',
-                 Verloskunde                    = 'other'))"
-    )
-  ),
-  class = "col_itm"
-)
-
-cfg <- wrap_src(
-  list(
-    vent_start = list(
-      list(ids = 9328L, sub_var = "itemid", table = "processitems",
-           callback = "transform_fun(set_val(TRUE))")
-    ),
-    vent_end = list(
-      list(ids = 9328L, sub_var = "itemid", index_var = "stop",
-           table = "processitems", callback = "transform_fun(set_val(TRUE))")
-    ),
-    ins = list(
-      list(ids = c(9014, 19129, 7624), sub_var = "itemid",
-           table = "drugitems")
-    ),
-    adh = list(
-      list(ids = 12467, sub_var = "itemid", table = "drugitems")
-    ),
-    abx = list(
-      list(ids = c(
-            2L,    13L,    19L,    24L,    28L,    29L,    57L,    59L,
-           82L,   103L,   240L,   247L,   333L,  1133L,  1199L,  1300L,
-         1371L,  1795L,  2284L,  2834L,  3237L,  3741L,  5576L,  6834L,
-         6847L,  6871L,  6919L,  6948L,  6953L,  6958L,  7044L,  7064L,
-         7185L,  7187L,  7208L,  7227L,  7235L,  8064L,  8394L,  8942L,
-         9029L,  9030L,  9052L,  9070L,  9117L,  9128L,  9133L,  9142L,
-         9151L,  9152L, 12262L, 12389L, 12398L, 12956L, 12997L, 13057L,
-        13094L, 13102L, 15591L, 18860L, 19137L, 19773L, 20563L, 23166L,
-        24241L, 25776L, 27617L, 29321L), table = "drugitems",
-      sub_var = "itemid", callback = "transform_fun(set_val(TRUE))")
-    ),
-    death = list(
-      list(table = "admissions", index_var = "dateofdeath",
-           val_var = "dischargedat", callback = "aumc_death",
-           class = "col_itm")
-    ),
-    los_icu = list(
-      list(callback = "los_callback", win_type = "icustay", class = "fun_itm")
-    ),
-    rass = list(
-      list(ids = 14444, sub_var = "itemid", table = "listitems",
-           callback = "transform_fun(aumc_rass_transform)")
-    ),
-    samp = list(
-      list(ids = c(
-         8097L,  8418L, 8588L, 9189L, 9190L, 9191L, 9192L, 9193L,  9194L,
-         9195L,  9197L, 9198L, 9200L, 9202L, 9203L, 9204L, 9205L, 13024L,
-        19663L, 19664L), table = "procedureorderitems", sub_var = "itemid",
-      callback = "transform_fun(set_val(TRUE))")
-    )
-  )
-)
-
-cfg <- c(cbk_itms, num_itms, rate_itms, dur_itms, dem_itms, gcs_itms, cfg)
+cfg <- c(cbk_itms, num_itms)
 cfg <- cfg[order(names(cfg))]
-
-cfg <- lapply(cfg, function(x) {
-
-  if ("sources" %in% names(x)) {
-
-    if ("mimic" %in% names(x[["sources"]]))
-      x[["sources"]] <- c(x[["sources"]],
-                          mimic_demo = list(x[["sources"]][["mimic"]]))
-
-    if ("eicu" %in% names(x[["sources"]]))
-      x[["sources"]] <- c(x[["sources"]],
-                          eicu_demo = list(x[["sources"]][["eicu"]]))
-
-    x[["sources"]] <- x[["sources"]][order(names(x[["sources"]]))]
-  }
-
-  x
-})
-
-message("writing config to ", config_dir)
 
 ricu::set_config(cfg, "concept-dict", config_dir)

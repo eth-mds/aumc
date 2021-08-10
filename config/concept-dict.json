@@ -1,54 +1,7 @@
 {
-  "abx": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [2, 13, 19, 24, 28, 29, 57, 59, 82, 103, 240, 247, 333, 1133, 1199, 1300, 1371, 1795, 2284, 2834, 3237, 3741, 5576, 6834, 6847, 6871, 6919, 6948, 6953, 6958, 7044, 7064, 7185, 7187, 7208, 7227, 7235, 8064, 8394, 8942, 9029, 9030, 9052, 9070, 9117, 9128, 9133, 9142, 9151, 9152, 12262, 12389, 12398, 12956, 12997, 13057, 13094, 13102, 15591, 18860, 19137, 19773, 20563, 23166, 24241, 25776, 27617, 29321],
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "callback": "transform_fun(set_val(TRUE))"
-        }
-      ]
-    }
-  },
-  "adh": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 12467,
-          "sub_var": "itemid",
-          "table": "drugitems"
-        }
-      ]
-    }
-  },
-  "adm": {
-    "sources": {
-      "aumc": [
-        {
-          "val_var": "specialty",
-          "table": "admissions",
-          "callback": "apply_map(c(Cardiochirurgie = 'surg', Cardiologie = 'med', ders = 'other', Gynaecologie = 'other', `Heelkunde Gastro-enterologie` = 'surg', `Heelkunde Longen/Oncologie` = 'surg', `Heelkunde Oncologie` = 'surg', Hematologie = 'med', `Intensive Care Volwassenen` = 'other', Inwendig = 'med', `Keel, Neus & Oorarts` = 'surg', Longziekte = 'med', `Maag-,Darm-,Leverziekten` = 'med', Mondheelkunde = 'surg', Nefrologie = 'med', Neurochirurgie = 'surg', Neurologie = 'med', Obstetrie = 'other', `Oncologie Inwendig` = 'med', Oogheelkunde = 'surg', Orthopedie = 'surg', `Plastische chirurgie` = 'surg', Reumatologie = 'med', Traumatologie = 'surg', Urologie = 'surg', Vaatchirurgie = 'surg', Verloskunde = 'other'))",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
-  "age": {
-    "sources": {
-      "aumc": [
-        {
-          "val_var": "agegroup",
-          "table": "admissions",
-          "callback": "apply_map(c(`18-39` = 30, `40-49` = 45, `50-59` = 55, `60-69` = 65, `70-79` = 75, `80+` = 90))",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
   "alb": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6801, 9937],
           "table": "numericitems",
@@ -60,7 +13,7 @@
   },
   "alp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6803, 11984],
           "table": "numericitems",
@@ -71,7 +24,7 @@
   },
   "alt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6800, 11978],
           "table": "numericitems",
@@ -82,7 +35,7 @@
   },
   "ast": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6806, 11990],
           "table": "numericitems",
@@ -93,7 +46,7 @@
   },
   "basos": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 14256,
           "table": "numericitems",
@@ -104,7 +57,7 @@
   },
   "be": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6807, 9994],
           "table": "numericitems",
@@ -117,7 +70,7 @@
   },
   "bicar": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6810, 9992],
           "table": "numericitems",
@@ -128,7 +81,7 @@
   },
   "bili": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6813, 9945],
           "table": "numericitems",
@@ -140,7 +93,7 @@
   },
   "bili_dir": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6812,
           "table": "numericitems",
@@ -151,7 +104,7 @@
   },
   "bnd": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6796, 11586],
           "table": "numericitems",
@@ -162,7 +115,7 @@
   },
   "bun": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6850, 9943],
           "table": "numericitems",
@@ -174,7 +127,7 @@
   },
   "ca": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6817, 9933],
           "table": "numericitems",
@@ -186,7 +139,7 @@
   },
   "cai": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6815, 8915, 9560, 9561, 10267],
           "table": "numericitems",
@@ -197,7 +150,7 @@
   },
   "ck": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6822, 11998],
           "table": "numericitems",
@@ -208,7 +161,7 @@
   },
   "ckmb": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6824,
           "table": "numericitems",
@@ -219,7 +172,7 @@
   },
   "cl": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 9930,
           "table": "numericitems",
@@ -230,7 +183,7 @@
   },
   "crea": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6836, 9941, 14216],
           "table": "numericitems",
@@ -242,7 +195,7 @@
   },
   "crp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6825, 10079],
           "table": "numericitems",
@@ -253,7 +206,7 @@
   },
   "dbp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6643,
           "table": "numericitems",
@@ -262,96 +215,9 @@
       ]
     }
   },
-  "death": {
-    "sources": {
-      "aumc": [
-        {
-          "table": "admissions",
-          "index_var": "dateofdeath",
-          "val_var": "dischargedat",
-          "callback": "aumc_death",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
-  "dobu_dur": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7178,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "stop_var": "stop",
-          "grp_var": "orderid",
-          "callback": "aumc_dur"
-        }
-      ]
-    }
-  },
-  "dobu_rate": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7178,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "rel_weight": "doserateperkg",
-          "rate_uom": "doserateunit",
-          "callback": "aumc_rate"
-        }
-      ]
-    }
-  },
-  "dopa_dur": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7179,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "stop_var": "stop",
-          "grp_var": "orderid",
-          "callback": "aumc_dur"
-        }
-      ]
-    }
-  },
-  "dopa_rate": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7179,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "rel_weight": "doserateperkg",
-          "rate_uom": "doserateunit",
-          "callback": "aumc_rate"
-        }
-      ]
-    }
-  },
-  "egcs": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6732,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Geen reactie` = 1, `Reactie op pijnprikkel` = 2, `Reactie op verbale prikkel` = 3, `Spontane reactie` = 4) )"
-        },
-        {
-          "ids": 13077,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Niet` = 1, `Op pijn` = 2, `Op aanspreken` = 3, `Spontaan` = 4) )"
-        }
-      ]
-    }
-  },
   "eos": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6773,
           "table": "numericitems",
@@ -360,37 +226,9 @@
       ]
     }
   },
-  "epi_dur": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6818,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "stop_var": "stop",
-          "grp_var": "orderid",
-          "callback": "aumc_dur"
-        }
-      ]
-    }
-  },
-  "epi_rate": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6818,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "rel_weight": "doserateperkg",
-          "rate_uom": "doserateunit",
-          "callback": "aumc_rate"
-        }
-      ]
-    }
-  },
   "esr": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6808, 11902],
           "table": "numericitems",
@@ -401,7 +239,7 @@
   },
   "etco2": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6707, 8884, 8885, 9658, 12356, 12805],
           "table": "numericitems",
@@ -413,7 +251,7 @@
   },
   "fgn": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6776, 9989, 10175],
           "table": "numericitems",
@@ -424,7 +262,7 @@
   },
   "fio2": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 12279,
           "table": "numericitems",
@@ -435,7 +273,7 @@
   },
   "glu": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6833, 9557, 9947],
           "table": "numericitems",
@@ -447,7 +285,7 @@
   },
   "hba1c": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [11812, 16166],
           "table": "numericitems",
@@ -458,7 +296,7 @@
   },
   "hbco": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 11690,
           "table": "numericitems",
@@ -469,7 +307,7 @@
   },
   "hct": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6777, 11423, 11545],
           "table": "numericitems",
@@ -478,21 +316,9 @@
       ]
     }
   },
-  "height": {
-    "sources": {
-      "aumc": [
-        {
-          "val_var": "heightgroup",
-          "table": "admissions",
-          "callback": "apply_map(c(`159-` = 150, `160-169` = 165, `170-179` = 175, `180-189` = 185, `190+` = 200))",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
   "hgb": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6778, 9553, 9960, 10286, 19703],
           "table": "numericitems",
@@ -504,7 +330,7 @@
   },
   "hr": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6640,
           "table": "numericitems",
@@ -515,7 +341,7 @@
   },
   "inr_pt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 11893,
           "table": "numericitems",
@@ -524,20 +350,9 @@
       ]
     }
   },
-  "ins": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [9014, 19129, 7624],
-          "sub_var": "itemid",
-          "table": "drugitems"
-        }
-      ]
-    }
-  },
   "k": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6835, 9556, 9927, 10285],
           "table": "numericitems",
@@ -548,7 +363,7 @@
   },
   "lact": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6837, 9580, 10053],
           "table": "numericitems",
@@ -557,20 +372,9 @@
       ]
     }
   },
-  "los_icu": {
-    "sources": {
-      "aumc": [
-        {
-          "callback": "los_callback",
-          "win_type": "icustay",
-          "class": "fun_itm"
-        }
-      ]
-    }
-  },
   "lymph": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 14258,
           "table": "numericitems",
@@ -581,7 +385,7 @@
   },
   "map": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6642,
           "table": "numericitems",
@@ -592,7 +396,7 @@
   },
   "mch": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 11679,
           "table": "numericitems",
@@ -604,7 +408,7 @@
   },
   "mchc": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 18666,
           "table": "numericitems",
@@ -616,7 +420,7 @@
   },
   "mcv": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 9968,
           "table": "numericitems",
@@ -627,7 +431,7 @@
   },
   "methb": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 11692,
           "table": "numericitems",
@@ -638,7 +442,7 @@
   },
   "mg": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6839, 9952],
           "table": "numericitems",
@@ -648,27 +452,9 @@
       ]
     }
   },
-  "mgcs": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6734,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Geen reactie` = 1, `Strekken` = 2, `Decortatie reflex (abnormaal buigen)` = 3, `Spastische reactie (terugtrekken)` = 4, `Localiseert pijn` = 5, `Volgt verbale commando's op` = 6) )"
-        },
-        {
-          "ids": 13072,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Geen reactie` = 1, `Strekken op pijn` = 2, `Abnormaal buigen bij pijn` = 3, `Terugtrekken bij pijn` = 4, `Localiseren pijn` = 5, `Voert opdrachten uit` = 6) )"
-        }
-      ]
-    }
-  },
   "na": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6840, 9555, 9924, 10284],
           "table": "numericitems",
@@ -679,7 +465,7 @@
   },
   "neut": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6786,
           "table": "numericitems",
@@ -688,37 +474,9 @@
       ]
     }
   },
-  "norepi_dur": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7229,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "stop_var": "stop",
-          "grp_var": "orderid",
-          "callback": "aumc_dur"
-        }
-      ]
-    }
-  },
-  "norepi_rate": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 7229,
-          "table": "drugitems",
-          "sub_var": "itemid",
-          "rel_weight": "doserateperkg",
-          "rate_uom": "doserateunit",
-          "callback": "aumc_rate"
-        }
-      ]
-    }
-  },
   "o2sat": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6709, 8903, 12311],
           "table": "numericitems",
@@ -729,7 +487,7 @@
   },
   "pco2": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6846, 9990, 21213],
           "table": "numericitems",
@@ -740,7 +498,7 @@
   },
   "ph": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6848, 12310],
           "table": "numericitems",
@@ -751,7 +509,7 @@
   },
   "phos": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6828, 9935],
           "table": "numericitems",
@@ -763,7 +521,7 @@
   },
   "plt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6797, 9964, 10409, 14252],
           "table": "numericitems",
@@ -774,7 +532,7 @@
   },
   "po2": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [7433, 9996, 21214],
           "table": "numericitems",
@@ -785,7 +543,7 @@
   },
   "pt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6789,
           "table": "numericitems",
@@ -796,7 +554,7 @@
   },
   "ptt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 17982,
           "table": "numericitems",
@@ -805,21 +563,9 @@
       ]
     }
   },
-  "rass": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 14444,
-          "sub_var": "itemid",
-          "table": "listitems",
-          "callback": "transform_fun(aumc_rass_transform)"
-        }
-      ]
-    }
-  },
   "rbc": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6774, 9962],
           "table": "numericitems",
@@ -830,7 +576,7 @@
   },
   "rdw": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 18952,
           "table": "numericitems",
@@ -841,7 +587,7 @@
   },
   "resp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [8874, 12266],
           "table": "numericitems",
@@ -850,21 +596,9 @@
       ]
     }
   },
-  "samp": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": [8097, 8418, 8588, 9189, 9190, 9191, 9192, 9193, 9194, 9195, 9197, 9198, 9200, 9202, 9203, 9204, 9205, 13024, 19663, 19664],
-          "table": "procedureorderitems",
-          "sub_var": "itemid",
-          "callback": "transform_fun(set_val(TRUE))"
-        }
-      ]
-    }
-  },
   "sbp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 6641,
           "table": "numericitems",
@@ -873,21 +607,9 @@
       ]
     }
   },
-  "sex": {
-    "sources": {
-      "aumc": [
-        {
-          "val_var": "gender",
-          "table": "admissions",
-          "callback": "apply_map(c(Vrouw = 'Female', Man = 'Male'))",
-          "class": "col_itm"
-        }
-      ]
-    }
-  },
   "temp": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [8658, 13952, 16110],
           "table": "numericitems",
@@ -898,7 +620,7 @@
   },
   "tnt": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 10407,
           "table": "numericitems",
@@ -907,21 +629,9 @@
       ]
     }
   },
-  "trach": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6735,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "transform_fun(comp_na(`==`, 'Geïntubeerd'))"
-        }
-      ]
-    }
-  },
   "urine": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": 8794,
           "table": "numericitems",
@@ -930,68 +640,13 @@
       ]
     }
   },
-  "vent_end": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 9328,
-          "sub_var": "itemid",
-          "index_var": "stop",
-          "table": "processitems",
-          "callback": "transform_fun(set_val(TRUE))"
-        }
-      ]
-    }
-  },
-  "vent_start": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 9328,
-          "sub_var": "itemid",
-          "table": "processitems",
-          "callback": "transform_fun(set_val(TRUE))"
-        }
-      ]
-    }
-  },
-  "vgcs": {
-    "sources": {
-      "aumc": [
-        {
-          "ids": 6735,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Geen reactie (geen zichtbare poging tot praten)` = 1, `Onbegrijpelijke geluiden` = 2, `Onduidelijke woorden (pogingen tot communicatie, maar onduidelijk)` = 3, `Verwarde conversatie` = 4, `Helder en adequaat (communicatie mogelijk)` = 5) )"
-        },
-        {
-          "ids": 13066,
-          "table": "listitems",
-          "sub_var": "itemid",
-          "callback": "apply_map( c(`Geen geluid` = 1, `Onverstaanbare woorden` = 2, `Onjuiste woorden` = 3, `Verwarde taal` = 4, `Georiënteerd` = 5) )"
-        }
-      ]
-    }
-  },
   "wbc": {
     "sources": {
-      "aumc": [
+      "aumc_ext": [
         {
           "ids": [6779, 9965],
           "table": "numericitems",
           "sub_var": "itemid"
-        }
-      ]
-    }
-  },
-  "weight": {
-    "sources": {
-      "aumc": [
-        {
-          "val_var": "weightgroup",
-          "table": "admissions",
-          "callback": "apply_map(c(`59-` = 50, `60-69` = 65, `70-79` = 75, `80-89` = 85, `90-99` = 95, `100-109` = 105, `110+` = 120))",
-          "class": "col_itm"
         }
       ]
     }
