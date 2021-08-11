@@ -1,12 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# aumc
-
-Using `ricu` to access the publicly available ICU database
-[AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of
-[Amsterdam UMC](https://www.amsterdamumc.nl).
-
 -----
 
 **With release of `ricu` version 0.2.0, this repository has become
@@ -14,6 +8,11 @@ obsolete and only serves for illustration purposes on how to set up a
 new data source with `ricu`.**
 
 -----
+
+Setting up and using [`ricu`](https://cran.r-project.org/package=ricu)
+to access the publicly available ICU database
+[AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of
+[Amsterdam UMC](https://www.amsterdamumc.nl).
 
 ## Configuring ricu
 
@@ -38,6 +37,18 @@ Sys.setenv(RICU_SRC_LOAD = paste(sources, collapse = ","),
            RICU_CONFIG_PATH = "config")
 
 library(ricu)
+#> 
+#> ── ricu 0.4.1.9000 ─────────────────────────────────────────────────────────────────────────────────
+#> 
+#> The following data sources are configured to be attached:
+#> (the environment variable `RICU_SRC_LOAD` controls this)
+#> 
+#> [32m✔[39m mimic_demo: 25 of 25 tables available
+#> [32m✔[39m eicu_demo: 31 of 31 tables available
+#> [32m✔[39m aumc: 7 of 7 tables available
+#> [32m✔[39m aumc_ext: 7 of 7 tables available
+#> 
+#> ────────────────────────────────────────────────────────────────────────────────────────────────────
 
 for (file in file.path("r", c("ricu.R", "callback.R"))) {
   source(file)
