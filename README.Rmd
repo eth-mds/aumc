@@ -18,7 +18,13 @@ fansi::set_knit_hooks(knitr::knit_hooks)
 
 Setting up and using [`ricu`](https://cran.r-project.org/package=ricu) to access the publicly available ICU database [AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of [Amsterdam UMC](https://www.amsterdamumc.nl).
 
-> With release of `ricu` version 0.2.0, this repository has become obsolete and only serves for illustration purposes on how to set up a new data source with `ricu`.
+---
+
+**With release of `ricu` version 0.2.0, this repository has become obsolete and only serves for illustration purposes on how to set up a new data source with `ricu`.**
+
+---
+
+In order to use the AmsterdamUMCdb as `ricu`-external dataset `aumc_ext`, some configuration is necessary to be set up before loading `ricu`. A configuration file `data-sources.json` provides the necessary info on the involved tables and `concept-dict.json` is required for loading `ricu` clinical concepts from the new dataset. Finally some dataset-specific implementations of certain S3 generic functions exported from `ricu` are required (see `r/ricu.R`) as might be some callback functions used in concept specification (see `r/callback.R`).
 
 ## Configuring ricu
 
@@ -55,7 +61,7 @@ import_src("aumc", src_data_dir("aumc_ext"))
 attach_src("aumc_ext")
 ```
 
-This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually).
+This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually) and mimimizes the amount of configuration information during set-up (compare `aumc_ext` of `data-sources.json` provided by this repo with `aumc` of the `ricu` provided `data-sources.json`.)
 
 ## Load data
 
