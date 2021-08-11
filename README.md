@@ -52,10 +52,10 @@ library(ricu)
 #> The following data sources are configured to be attached:
 #> (the environment variable `RICU_SRC_LOAD` controls this)
 #> 
-#> [32m✔[39m mimic_demo: 25 of 25 tables available
-#> [32m✔[39m eicu_demo: 31 of 31 tables available
-#> [32m✔[39m aumc: 7 of 7 tables available
-#> [32m✔[39m aumc_ext: 7 of 7 tables available
+#> ✔ mimic_demo: 25 of 25 tables available
+#> ✔ eicu_demo: 31 of 31 tables available
+#> ✔ aumc: 7 of 7 tables available
+#> ✔ aumc_ext: 7 of 7 tables available
 #> 
 #> ────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -91,29 +91,24 @@ Upon successful set-up, data can be loaded as:
 
 ``` r
 aumc_ext$processitems
-```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='color: #555555;'># &lt;src_tbl&gt;:  [256,715 ✖ 6]</span>
-#&gt; <span style='color: #555555;'># ID options: patientid (patient) &lt; admissionid (icustay)</span>
-#&gt; <span style='color: #555555;'># Defaults:   `start` (index), `item` (val)</span>
-#&gt; <span style='color: #555555;'># Time vars:  `start`, `stop`</span>
-#&gt;         admissionid itemid item                    start      stop duration
-#&gt;               <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span>  <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;chr&gt;</span>                   <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span>
-#&gt;       <span style='color: #555555;'>1</span>           0   <span style='text-decoration: underline;'>9</span>159 Arterielijn Radialis 20<span style='text-decoration: underline;'>520</span>000 148<span style='text-decoration: underline;'>800</span>000     <span style='text-decoration: underline;'>2</span>138
-#&gt;       <span style='color: #555555;'>2</span>           0   <span style='text-decoration: underline;'>9</span>166 Trilumen Jugularis   20<span style='text-decoration: underline;'>520</span>000 148<span style='text-decoration: underline;'>800</span>000     <span style='text-decoration: underline;'>2</span>138
-#&gt;       <span style='color: #555555;'>3</span>           0   <span style='text-decoration: underline;'>9</span>174 Swan Ganz Jugularis  20<span style='text-decoration: underline;'>520</span>000 139<span style='text-decoration: underline;'>020</span>000     <span style='text-decoration: underline;'>1</span>975
-#&gt;       <span style='color: #555555;'>4</span>           0   <span style='text-decoration: underline;'>9</span>328 Beademen             20<span style='text-decoration: underline;'>520</span>000  69<span style='text-decoration: underline;'>120</span>000      810
-#&gt;       <span style='color: #555555;'>5</span>           0   <span style='text-decoration: underline;'>9</span>399 Wonddrain 1          20<span style='text-decoration: underline;'>520</span>000  94<span style='text-decoration: underline;'>320</span>000     <span style='text-decoration: underline;'>1</span>230
-#&gt;       <span style='color: #555555;'>…</span>
-#&gt; <span style='color: #555555;'>256,711</span>       <span style='text-decoration: underline;'>23</span>551   <span style='text-decoration: underline;'>9</span>422 Perifeer infuus       3<span style='text-decoration: underline;'>900</span>000 165<span style='text-decoration: underline;'>660</span>000     <span style='text-decoration: underline;'>2</span>696
-#&gt; <span style='color: #555555;'>256,712</span>       <span style='text-decoration: underline;'>23</span>551  <span style='text-decoration: underline;'>12</span>634 Tube                  3<span style='text-decoration: underline;'>900</span>000 165<span style='text-decoration: underline;'>660</span>000     <span style='text-decoration: underline;'>2</span>696
-#&gt; <span style='color: #555555;'>256,713</span>       <span style='text-decoration: underline;'>23</span>551  <span style='text-decoration: underline;'>13</span>009 Parenchymdrain        3<span style='text-decoration: underline;'>960</span>000 165<span style='text-decoration: underline;'>660</span>000     <span style='text-decoration: underline;'>2</span>695
-#&gt; <span style='color: #555555;'>256,714</span>       <span style='text-decoration: underline;'>23</span>552   <span style='text-decoration: underline;'>9</span>422 Perifeer infuus         <span style='text-decoration: underline;'>60</span>000  64<span style='text-decoration: underline;'>980</span>000     <span style='text-decoration: underline;'>1</span>082
-#&gt; <span style='color: #555555;'>256,715</span>       <span style='text-decoration: underline;'>23</span>552   <span style='text-decoration: underline;'>9</span>422 Perifeer infuus         <span style='text-decoration: underline;'>60</span>000  73<span style='text-decoration: underline;'>320</span>000     <span style='text-decoration: underline;'>1</span>221
-#&gt; <span style='color: #555555;'># … with 256,705 more rows</span>
-</CODE></PRE>
-
-``` r
+#> # <src_tbl>:  [256,715 ✖ 6]
+#> # ID options: patientid (patient) < admissionid (icustay)
+#> # Defaults:   `start` (index), `item` (val)
+#> # Time vars:  `start`, `stop`
+#>         admissionid itemid item                    start      stop duration
+#>               <int>  <int> <chr>                   <dbl>     <dbl>    <int>
+#>       1           0   9159 Arterielijn Radialis 20520000 148800000     2138
+#>       2           0   9166 Trilumen Jugularis   20520000 148800000     2138
+#>       3           0   9174 Swan Ganz Jugularis  20520000 139020000     1975
+#>       4           0   9328 Beademen             20520000  69120000      810
+#>       5           0   9399 Wonddrain 1          20520000  94320000     1230
+#>       …
+#> 256,711       23551   9422 Perifeer infuus       3900000 165660000     2696
+#> 256,712       23551  12634 Tube                  3900000 165660000     2696
+#> 256,713       23551  13009 Parenchymdrain        3960000 165660000     2695
+#> 256,714       23552   9422 Perifeer infuus         60000  64980000     1082
+#> 256,715       23552   9422 Perifeer infuus         60000  73320000     1221
+#> # … with 256,705 more rows
 
 load_ts(aumc_ext$processitems, itemid == 9159, id_var = "patientid")
 load_ts(aumc_ext$processitems, itemid == 9159, id_var = "admissionid")
@@ -123,53 +118,43 @@ gluc <- concept("gluc", unit = "mmol/l",
 )
 
 load_concepts(gluc, id_type = "patient", verbose = FALSE)
-```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='color: #555555;'># A `ts_tbl`: 587,791 ✖ 3</span>
-#&gt; <span style='color: #555555;'># Id var:     `patientid`</span>
-#&gt; <span style='color: #555555;'># Units:      `gluc` [mmol/l]</span>
-#&gt; <span style='color: #555555;'># Index var:  `measuredat` (1 hours)</span>
-#&gt;         patientid measuredat  gluc
-#&gt;             <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;drtn&gt;</span>     <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt;       <span style='color: #555555;'>1</span>         0 -271 hours  6.40
-#&gt;       <span style='color: #555555;'>2</span>         0 -249 hours  7
-#&gt;       <span style='color: #555555;'>3</span>         0    5 hours 11.4
-#&gt;       <span style='color: #555555;'>4</span>         0    6 hours 10.7
-#&gt;       <span style='color: #555555;'>5</span>         0    9 hours  9.60
-#&gt;       <span style='color: #555555;'>…</span>
-#&gt; <span style='color: #555555;'>587,787</span>     <span style='text-decoration: underline;'>20</span>325   38 hours  5.30
-#&gt; <span style='color: #555555;'>587,788</span>     <span style='text-decoration: underline;'>20</span>325   39 hours  6.40
-#&gt; <span style='color: #555555;'>587,789</span>     <span style='text-decoration: underline;'>20</span>325   41 hours  5.70
-#&gt; <span style='color: #555555;'>587,790</span>     <span style='text-decoration: underline;'>20</span>325   42 hours  5.40
-#&gt; <span style='color: #555555;'>587,791</span>     <span style='text-decoration: underline;'>20</span>326   13 hours  4.40
-#&gt; <span style='color: #555555;'># … with 587,781 more rows</span>
-</CODE></PRE>
-
-``` r
+#> # A `ts_tbl`: 587,791 ✖ 3
+#> # Id var:     `patientid`
+#> # Units:      `gluc` [mmol/l]
+#> # Index var:  `measuredat` (1 hours)
+#>         patientid measuredat  gluc
+#>             <int> <drtn>     <dbl>
+#>       1         0 -271 hours  6.40
+#>       2         0 -249 hours  7
+#>       3         0    5 hours 11.4
+#>       4         0    6 hours 10.7
+#>       5         0    9 hours  9.60
+#>       …
+#> 587,787     20325   38 hours  5.30
+#> 587,788     20325   39 hours  6.40
+#> 587,789     20325   41 hours  5.70
+#> 587,790     20325   42 hours  5.40
+#> 587,791     20326   13 hours  4.40
+#> # … with 587,781 more rows
 load_concepts(gluc, id_type = "icustay", verbose = FALSE)
-```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='color: #555555;'># A `ts_tbl`: 771,720 ✖ 3</span>
-#&gt; <span style='color: #555555;'># Id var:     `admissionid`</span>
-#&gt; <span style='color: #555555;'># Units:      `gluc` [mmol/l]</span>
-#&gt; <span style='color: #555555;'># Index var:  `measuredat` (1 hours)</span>
-#&gt;         admissionid measuredat  gluc
-#&gt;               <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;drtn&gt;</span>     <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt;       <span style='color: #555555;'>1</span>           0 -271 hours  6.40
-#&gt;       <span style='color: #555555;'>2</span>           0 -249 hours  7
-#&gt;       <span style='color: #555555;'>3</span>           0    5 hours 11.4
-#&gt;       <span style='color: #555555;'>4</span>           0    6 hours 10.7
-#&gt;       <span style='color: #555555;'>5</span>           0    9 hours  9.60
-#&gt;       <span style='color: #555555;'>…</span>
-#&gt; <span style='color: #555555;'>771,716</span>       <span style='text-decoration: underline;'>23</span>551   38 hours  5.30
-#&gt; <span style='color: #555555;'>771,717</span>       <span style='text-decoration: underline;'>23</span>551   39 hours  6.40
-#&gt; <span style='color: #555555;'>771,718</span>       <span style='text-decoration: underline;'>23</span>551   41 hours  5.70
-#&gt; <span style='color: #555555;'>771,719</span>       <span style='text-decoration: underline;'>23</span>551   42 hours  5.40
-#&gt; <span style='color: #555555;'>771,720</span>       <span style='text-decoration: underline;'>23</span>552   13 hours  4.40
-#&gt; <span style='color: #555555;'># … with 771,710 more rows</span>
-</CODE></PRE>
-
-``` r
+#> # A `ts_tbl`: 771,720 ✖ 3
+#> # Id var:     `admissionid`
+#> # Units:      `gluc` [mmol/l]
+#> # Index var:  `measuredat` (1 hours)
+#>         admissionid measuredat  gluc
+#>               <int> <drtn>     <dbl>
+#>       1           0 -271 hours  6.40
+#>       2           0 -249 hours  7
+#>       3           0    5 hours 11.4
+#>       4           0    6 hours 10.7
+#>       5           0    9 hours  9.60
+#>       …
+#> 771,716       23551   38 hours  5.30
+#> 771,717       23551   39 hours  6.40
+#> 771,718       23551   41 hours  5.70
+#> 771,719       23551   42 hours  5.40
+#> 771,720       23552   13 hours  4.40
+#> # … with 771,710 more rows
 
 concept_availability(concepts = c("glu", "alb", "weight"))
 #>        aumc aumc_ext eicu_demo mimic_demo
@@ -178,48 +163,41 @@ concept_availability(concepts = c("glu", "alb", "weight"))
 #> weight TRUE    FALSE      TRUE       TRUE
 
 load_concepts(c("glu", "alb"), "aumc_ext", verbose = FALSE)
-```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='color: #555555;'># A `ts_tbl`: 780,378 ✖ 4</span>
-#&gt; <span style='color: #555555;'># Id var:     `admissionid`</span>
-#&gt; <span style='color: #555555;'># Units:      `glu` [mg/dL], `alb` [g/dL]</span>
-#&gt; <span style='color: #555555;'># Index var:  `measuredat` (1 hours)</span>
-#&gt;         admissionid measuredat   glu   alb
-#&gt;               <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;drtn&gt;</span>     <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt;       <span style='color: #555555;'>1</span>           0 -271 hours 115.   <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>2</span>           0 -249 hours 126.   <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>3</span>           0    5 hours 205.   <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>4</span>           0    6 hours 193.    2.2
-#&gt;       <span style='color: #555555;'>5</span>           0    9 hours 173.   <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>…</span>
-#&gt; <span style='color: #555555;'>780,374</span>       <span style='text-decoration: underline;'>23</span>551   38 hours  95.5   2
-#&gt; <span style='color: #555555;'>780,375</span>       <span style='text-decoration: underline;'>23</span>551   39 hours 115.   <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>780,376</span>       <span style='text-decoration: underline;'>23</span>551   41 hours 103.   <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>780,377</span>       <span style='text-decoration: underline;'>23</span>551   42 hours  97.3  <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>780,378</span>       <span style='text-decoration: underline;'>23</span>552   13 hours  79.3  <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'># … with 780,368 more rows</span>
-</CODE></PRE>
-
-``` r
+#> # A `ts_tbl`: 780,378 ✖ 4
+#> # Id var:     `admissionid`
+#> # Units:      `glu` [mg/dL], `alb` [g/dL]
+#> # Index var:  `measuredat` (1 hours)
+#>         admissionid measuredat   glu   alb
+#>               <int> <drtn>     <dbl> <dbl>
+#>       1           0 -271 hours 115.   NA
+#>       2           0 -249 hours 126.   NA
+#>       3           0    5 hours 205.   NA
+#>       4           0    6 hours 193.    2.2
+#>       5           0    9 hours 173.   NA
+#>       …
+#> 780,374       23551   38 hours  95.5   2
+#> 780,375       23551   39 hours 115.   NA
+#> 780,376       23551   41 hours 103.   NA
+#> 780,377       23551   42 hours  97.3  NA
+#> 780,378       23552   13 hours  79.3  NA
+#> # … with 780,368 more rows
 load_concepts(c("alb", "weight"), "aumc_ext", verbose = FALSE)
+#> # A `ts_tbl`: 106,139 ✖ 4
+#> # Id var:     `admissionid`
+#> # Units:      `alb` [g/dL], `weight` [kg]
+#> # Index var:  `measuredat` (1 hours)
+#>         admissionid measuredat   alb weight
+#>               <int> <drtn>     <dbl>  <dbl>
+#>       1           0  6 hours     2.2     NA
+#>       2           1  0 hours     2.9     NA
+#>       3           2  0 hours     2.8     NA
+#>       4           3  2 hours     2.8     NA
+#>       5           4 41 hours     2.5     NA
+#>       …
+#> 106,135       23549  9 hours     2.6     NA
+#> 106,136       23550  2 hours     2.2     NA
+#> 106,137       23551  1 hours     2.6     NA
+#> 106,138       23551 14 hours     2.3     NA
+#> 106,139       23551 38 hours     2       NA
+#> # … with 106,129 more rows
 ```
-
-<PRE class="fansi fansi-output"><CODE>#&gt; <span style='color: #555555;'># A `ts_tbl`: 106,139 ✖ 4</span>
-#&gt; <span style='color: #555555;'># Id var:     `admissionid`</span>
-#&gt; <span style='color: #555555;'># Units:      `alb` [g/dL], `weight` [kg]</span>
-#&gt; <span style='color: #555555;'># Index var:  `measuredat` (1 hours)</span>
-#&gt;         admissionid measuredat   alb weight
-#&gt;               <span style='color: #555555; font-style: italic;'>&lt;int&gt;</span> <span style='color: #555555; font-style: italic;'>&lt;drtn&gt;</span>     <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #555555; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt;       <span style='color: #555555;'>1</span>           0  6 hours     2.2     <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>2</span>           1  0 hours     2.9     <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>3</span>           2  0 hours     2.8     <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>4</span>           3  2 hours     2.8     <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>5</span>           4 41 hours     2.5     <span style='color: #BB0000;'>NA</span>
-#&gt;       <span style='color: #555555;'>…</span>
-#&gt; <span style='color: #555555;'>106,135</span>       <span style='text-decoration: underline;'>23</span>549  9 hours     2.6     <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>106,136</span>       <span style='text-decoration: underline;'>23</span>550  2 hours     2.2     <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>106,137</span>       <span style='text-decoration: underline;'>23</span>551  1 hours     2.6     <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>106,138</span>       <span style='text-decoration: underline;'>23</span>551 14 hours     2.3     <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'>106,139</span>       <span style='text-decoration: underline;'>23</span>551 38 hours     2       <span style='color: #BB0000;'>NA</span>
-#&gt; <span style='color: #555555;'># … with 106,129 more rows</span>
-</CODE></PRE>
