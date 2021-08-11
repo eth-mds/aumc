@@ -35,13 +35,7 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
   time_vars <- intersect(time_vars, cols)
 
   dat <- load_src(x, {{ rows }}, cols)
-
-  if (length(time_vars)) {
-
-    stopifnot(id_sel %in% colnames(dat))
-
-    dat <- dat[, c(time_vars) := lapply(.SD, ms_as_min), .SDcols = time_vars]
-  }
+  dat <- dat[, c(time_vars) := lapply(.SD, ms_as_min), .SDcols = time_vars]
 
   as_id_tbl(dat, id_vars = id_sel, by_ref = TRUE)
 }
@@ -55,16 +49,9 @@ aumc_windows <- function(x) {
   end <- c("dischargedat", "dateofdeath")
 
   tbl <- as_src_tbl(x, "admissions")
-  mis <- setdiff(sta, colnames(tbl))
 
-  stopifnot(length(mis) >= 1L)
-
-  res <- tbl[, c(ids, intersect(sta, colnames(tbl)), end)]
-
-  if (length(mis) > 0L) {
-    res[, c(mis) := 0L]
-  }
-
+  res <- tbl[, c(ids, sta[1L], end)]
+  res <- res[, c(sta[2L]) := 0L]
   res <- res[, c(sta, end) := lapply(.SD, ms_as_min), .SDcols = c(sta, end)]
 
   res <- data.table::setcolorder(res, c(ids, sta, end))
