@@ -1,18 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
------
-
-**With release of `ricu` version 0.2.0, this repository has become
-obsolete and only serves for illustration purposes on how to set up a
-new data source with `ricu`.**
-
------
-
 Setting up and using [`ricu`](https://cran.r-project.org/package=ricu)
 to access the publicly available ICU database
 [AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of
 [Amsterdam UMC](https://www.amsterdamumc.nl).
+
+> With release of `ricu` version 0.2.0, this repository has become
+> obsolete and only serves for illustration purposes on how to set up a
+> new data source with `ricu`.
 
 ## Configuring ricu
 
@@ -71,8 +67,11 @@ attach_src("aumc_ext")
 ```
 
 This mimics manual download and conversion to `.fst` files (as one might
-do for setting up a new data source manually). Upon successful set-up,
-data can be loaded as:
+do for setting up a new data source manually).
+
+## Load data
+
+Upon successful set-up, data can be loaded as:
 
 ``` r
 aumc_ext$processitems
@@ -156,18 +155,11 @@ load_concepts(gluc, id_type = "icustay", verbose = FALSE)
 
 ``` r
 
-head(concept_availability(), n = 10)
-#>          aumc aumc_ext eicu_demo mimic_demo
-#> abx      TRUE    FALSE      TRUE       TRUE
-#> adh_rate TRUE    FALSE      TRUE       TRUE
-#> adm      TRUE    FALSE      TRUE       TRUE
-#> age      TRUE    FALSE      TRUE       TRUE
-#> alb      TRUE     TRUE      TRUE       TRUE
-#> alp      TRUE     TRUE      TRUE       TRUE
-#> alt      TRUE     TRUE      TRUE       TRUE
-#> ast      TRUE     TRUE      TRUE       TRUE
-#> basos    TRUE     TRUE      TRUE       TRUE
-#> be       TRUE     TRUE      TRUE       TRUE
+concept_availability(concepts = c("glu", "alb", "weight"))
+#>        aumc aumc_ext eicu_demo mimic_demo
+#> glu    TRUE     TRUE      TRUE       TRUE
+#> alb    TRUE     TRUE      TRUE       TRUE
+#> weight TRUE    FALSE      TRUE       TRUE
 
 load_concepts(c("glu", "alb"), "aumc_ext", verbose = FALSE)
 ```

@@ -16,13 +16,9 @@ knitr::opts_chunk$set(
 fansi::set_knit_hooks(knitr::knit_hooks)
 ```
 
----
-
-**With release of `ricu` version 0.2.0, this repository has become obsolete and only serves for illustration purposes on how to set up a new data source with `ricu`.**
-
----
-
 Setting up and using [`ricu`](https://cran.r-project.org/package=ricu) to access the publicly available ICU database [AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of [Amsterdam UMC](https://www.amsterdamumc.nl).
+
+> With release of `ricu` version 0.2.0, this repository has become obsolete and only serves for illustration purposes on how to set up a new data source with `ricu`.
 
 ## Configuring ricu
 
@@ -59,7 +55,11 @@ import_src("aumc", src_data_dir("aumc_ext"))
 attach_src("aumc_ext")
 ```
 
-This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually). Upon successful set-up, data can be loaded as:
+This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually).
+
+## Load data
+
+Upon successful set-up, data can be loaded as:
 
 ```{r, data-load}
 aumc_ext$processitems
@@ -74,7 +74,7 @@ gluc <- concept("gluc", unit = "mmol/l",
 load_concepts(gluc, id_type = "patient", verbose = FALSE)
 load_concepts(gluc, id_type = "icustay", verbose = FALSE)
 
-head(concept_availability(), n = 10)
+concept_availability(concepts = c("glu", "alb", "weight"))
 
 load_concepts(c("glu", "alb"), "aumc_ext", verbose = FALSE)
 load_concepts(c("alb", "weight"), "aumc_ext", verbose = FALSE)
