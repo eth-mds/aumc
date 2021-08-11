@@ -40,8 +40,8 @@
           "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "partitioning": {
-          "col": "itemid",
-          "breaks": 0
+          "col": "",
+          "breaks": 1
         }
       },
       "numericitems": {
@@ -52,8 +52,8 @@
           "time_vars": ["measuredat", "registeredat", "updatedat"]
         },
         "partitioning": {
-          "col": "itemid",
-          "breaks": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+          "col": "",
+          "breaks": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
         }
       },
       "procedureorderitems": {
@@ -70,6 +70,31 @@
           "time_vars": ["start", "stop"]
         }
       }
+    }
+  },
+  {
+    "name": "aumc_min",
+    "id_cfg": {
+      "icustay": "admissionid"
+    },
+    "tables": {
+      "admissions": {},
+      "drugitems": {},
+      "freetextitems": {},
+      "listitems": {
+        "partitioning": {
+          "col": "",
+          "breaks": 1
+        }
+      },
+      "numericitems": {
+        "partitioning": {
+          "col": "",
+          "breaks": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        }
+      },
+      "procedureorderitems": {},
+      "processitems": {}
     }
   }
 ]

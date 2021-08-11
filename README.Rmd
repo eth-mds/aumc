@@ -21,11 +21,13 @@ Setting up and using [`ricu`](https://cran.r-project.org/package=ricu) to access
 
 ---
 
-In order to use the AmsterdamUMCdb as `ricu`-external dataset `aumc_ext`, some configuration is necessary to be set up before loading `ricu`. A configuration file `data-sources.json` provides the necessary info on the involved tables and `concept-dict.json` is required for loading `ricu` clinical concepts from the new dataset. Finally some dataset-specific implementations of certain S3 generic functions exported from `ricu` are required (see `r/ricu.R`) as might be some callback functions used in concept specification (see `r/callback.R`).
+In order to use the AmsterdamUMCdb as `ricu`-external dataset, some configuration is necessary to be set up before loading `ricu`. A configuration file `data-sources.json` provides the necessary info on the involved tables and `concept-dict.json` is required for loading `ricu` clinical concepts from the new dataset. Finally some dataset-specific implementations of certain S3 generic functions exported from `ricu` are required (see `r/ricu.R`) as might be some callback functions used in concept specification (see `r/callback.R`).
+
+This repository contains configuration files and required functions for setting up AmsterdamUMCdb in two different ways: `aumc_ext` creates an `ricu`-external version of AmsterdamUMCdb with ID types and column defaults as implemented in the `ricu`-internal version of AmsterdamUMCdb, whereas `aumc_min` provides a minimal version of AmsterdamUMCdb with only a single ID type and no per-table column defaults, thereby significantly simplifying initial setup.
 
 ## Configuring ricu
 
-Several environment variables can be set for `ricu` to facilitate the integration of `aumc_ext`:
+Several environment variables can be set for `ricu` to facilitate the integration of AmsterdamUMCdb as external dataset:
 
 * `RICU_DATA_PATH`: (optionally) point this to a directory containing a folder `aumc_ext` which holds the AmsterdamUMCdb data
 * `RICU_CONFIG_PATH`: point this to the `./config` directory of this project
@@ -34,7 +36,7 @@ Several environment variables can be set for `ricu` to facilitate the integratio
 For now, we leave `RICU_DATA_PATH` at default and set the other environment variables accordingly before loading `ricu`
 
 ```{r, config-setup}
-sources <- c("mimic_demo", "eicu_demo", "aumc", "aumc_ext")
+sources <- c("mimic_demo", "eicu_demo", "aumc", "aumc_ext", "aumc_min")
 
 Sys.setenv(RICU_SRC_LOAD = paste(sources, collapse = ","),
            RICU_CONFIG_PATH = "config")
@@ -53,18 +55,23 @@ As `aumc` is already fully supported by `ricu`, all configuration in this repo h
 In order to download and set up the data as `aumc_ext`, but using `ricu` functionality for downloading and importing `aumc`, run:
 
 ```{r, data-setup, eval = FALSE}
-download_src("aumc", src_data_dir("aumc_ext"))
-import_src("aumc", src_data_dir("aumc_ext"))
+ext_dir <- src_data_dir("aumc_ext")
+
+download_src("aumc", ext_dir)
+import_src("aumc", ext_dir)
+
 attach_src("aumc_ext")
+
+file.symlink(ext_dir, src_data_dir("aumc_min"))
 ```
 
 This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually) and mimimizes the amount of configuration information during set-up (compare `aumc_ext` of `data-sources.json` provided by this repo with `aumc` of the `ricu` provided `data-sources.json`.)
 
 ## Load data
 
-Upon successful set-up, data can be loaded as:
+Upon successful set-up, data can be loaded from `aumc_ext` as:
 
-```{r, data-load}
+```{r, data-ext}
 aumc_ext$processitems
 
 load_ts(aumc_ext$processitems, itemid == 9159, id_var = "patientid")
@@ -82,3 +89,23 @@ concept_availability(concepts = c("glu", "alb", "weight"))
 load_concepts(c("glu", "alb"), "aumc_ext", verbose = FALSE)
 load_concepts(c("alb", "weight"), "aumc_ext", verbose = FALSE)
 ```
+
+and from `aumc_min` as
+
+```{r, data-min}
+aumc_min$processitems
+
+load_ts(aumc_min$processitems, itemid == 9159, id_var = "admissionid",
+        index_var = "start", time_vars = c("start", "stop"))
+
+gluc <- concept("gluc", unit = "mmol/l",
+  item("aumc_min", "numericitems", "itemid", list(c(9947L, 6833L, 9557L)),
+       index_var = "measuredat", val_var = "value", unit_var = "unit",
+       time_vars = list(c("measuredat", "registeredat", "updatedat")))
+)
+
+load_concepts(gluc, id_type = "icustay", verbose = FALSE)
+load_concepts(c("glu", "alb"), "aumc_min", verbose = FALSE)
+```
+
+Note that for `aumc_min`, data can only be queried using the `icustay` ID type and calls to `load_ts()` and related functions, as well as instantiation of data items is required to be more verbose, as corresponding default values are not available from configuration info. Similarly, `aumc_min` items in `concept-dict.json` also repeatedly require this information.

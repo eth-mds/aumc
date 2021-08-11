@@ -1,10 +1,26 @@
 
-r_dir <- file.path(rprojroot::find_root(".git/index"), "r")
-invisible(lapply(list.files(r_dir, full.names = TRUE), source))
+root_dir <- rprojroot::find_root(".git/index")
+source(file.path(root_dir, "scripts", "defaults.R"))
 
-wrap_lst <- function(...) wrap_src(lapply(Map(list, ...), list))
-wrap_src <- function(x) Map(list, sources = Map(list, aumc_ext = x))
-prep_ids <- function(x) lapply(lapply(x, as.integer), sort)
+add_vars <- function(x) {
+  vars <- Map(`[[`, list(defaults()), lapply(x, `[[`, "table"))
+  Map(`[<-`, x, lapply(vars, names), vars)
+}
+
+wrap_lst <- function(...) {
+  wrap_src(lapply(Map(list, ...), list))
+}
+
+wrap_src <- function(x, vars) {
+  Map(
+    list,
+    sources = Map(list, aumc_ext = x, aumc_min = lapply(x, add_vars))
+  )
+}
+
+prep_ids <- function(x) {
+  lapply(lapply(x, as.integer), sort)
+}
 
 num_itms <- list(
   hct = c(11423, 11545, 6777),
@@ -96,4 +112,4 @@ cbk_itms$be$sources$aumc_ext[[1L]][["dir_var"]] <- "tag"
 cfg <- c(cbk_itms, num_itms)
 cfg <- cfg[order(names(cfg))]
 
-ricu::set_config(cfg, "concept-dict", config_dir)
+ricu::set_config(cfg, "concept-dict", file.path(root_dir, "config"))

@@ -23,7 +23,8 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
   if (id_hint %in% colnames(x)) {
     id_sel <- id_hint
   } else {
-    id_sel <- intersect(c("admissionid", "patientid"), colnames(x))[1L]
+    id_opt <- id_var_opts(sort(as_id_cfg(x), decreasing = TRUE))
+    id_sel <- intersect(id_opt, colnames(x))[1L]
   }
 
   stopifnot(is.character(id_sel), length(id_sel) == 1L)
@@ -41,6 +42,7 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
 }
 
 .S3method("load_difftime", "aumc_ext_tbl", load_aumc)
+.S3method("load_difftime", "aumc_min_tbl", load_aumc)
 
 aumc_windows <- function(x) {
 
