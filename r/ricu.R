@@ -26,7 +26,7 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
     id_sel <- intersect(c("admissionid", "patientid"), colnames(x))[1L]
   }
 
-  assert_that(is.string(id_sel))
+  stopifnot(is.character(id_sel), length(id_sel) == 1L)
 
   if (!id_sel %in% cols) {
     cols <- c(id_sel, cols)
@@ -38,7 +38,7 @@ load_aumc <- function(x, rows, cols = colnames(x), id_hint = id_vars(x),
 
   if (length(time_vars)) {
 
-    assert_that(has_name(dat, id_sel))
+    stopifnot(id_sel %in% colnames(dat))
 
     dat <- dat[, c(time_vars) := lapply(.SD, ms_as_min), .SDcols = time_vars]
   }
@@ -57,7 +57,7 @@ aumc_windows <- function(x) {
   tbl <- as_src_tbl(x, "admissions")
   mis <- setdiff(sta, colnames(tbl))
 
-  assert_that(length(mis) >= 1L)
+  stopifnot(length(mis) >= 1L)
 
   res <- tbl[, c(ids, intersect(sta, colnames(tbl)), end)]
 

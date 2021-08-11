@@ -1,0 +1,83 @@
+---
+output:
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r knitr-setup, include = FALSE, results = "asis", comment = ""}
+options(crayon.enabled = TRUE)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+fansi::set_knit_hooks(knitr::knit_hooks)
+```
+
+# aumc
+
+Using `ricu` to access the publicly available ICU database [AmsterdamUMCdb](https://github.com/AmsterdamUMC/AmsterdamUMCdb) of [Amsterdam UMC](https://www.amsterdamumc.nl).
+
+---
+
+**With release of `ricu` version 0.2.0, this repository has become obsolete and only serves for illustration purposes on how to set up a new data source with `ricu`.**
+
+---
+
+## Configuring ricu
+
+Several environment variables can be set for `ricu` to facilitate the integration of `aumc_ext`:
+
+* `RICU_DATA_PATH`: (optionally) point this to a directory containing a folder `aumc_ext` which holds the AmsterdamUMCdb data
+* `RICU_CONFIG_PATH`: point this to the `./config` directory of this project
+* `RICU_SRC_LOAD`: Comma separated list of data sources to automatically load when attaching `ricu` (e.g. `mimic,mimic_demo,aumc_ext`)
+
+For now, we leave `RICU_DATA_PATH` at default and set the other environment variables accordingly before loading `ricu`
+
+```{r, config-setup}
+sources <- c("mimic_demo", "eicu_demo", "aumc", "aumc_ext")
+
+Sys.setenv(RICU_SRC_LOAD = paste(sources, collapse = ","),
+           RICU_CONFIG_PATH = "config")
+
+library(ricu)
+
+for (file in file.path("r", c("ricu.R", "callback.R"))) {
+  source(file)
+}
+```
+
+As `aumc` is already fully supported by `ricu`, all configuration in this repo has been renamed to set up the AmsterdamUMCdb data as external dataset `aumc_ext`.
+
+## Set-up
+
+In order to download and set up the data as `aumc_ext`, but using `ricu` functionality for downloading and importing `aumc`, run:
+
+```{r, data-setup, eval = FALSE}
+download_src("aumc", src_data_dir("aumc_ext"))
+import_src("aumc", src_data_dir("aumc_ext"))
+attach_src("aumc_ext")
+```
+
+This mimics manual download and conversion to `.fst` files (as one might do for setting up a new data source manually). Upon successful set-up, data can be loaded as:
+
+```{r, data-load}
+aumc_ext$processitems
+
+load_ts(aumc_ext$processitems, itemid == 9159, id_var = "patientid")
+load_ts(aumc_ext$processitems, itemid == 9159, id_var = "admissionid")
+
+gluc <- concept("gluc", unit = "mmol/l",
+  item("aumc_ext", "numericitems", "itemid", list(c(9947L, 6833L, 9557L)))
+)
+
+load_concepts(gluc, id_type = "patient", verbose = FALSE)
+load_concepts(gluc, id_type = "icustay", verbose = FALSE)
+
+head(concept_availability(), n = 10)
+
+load_concepts(c("glu", "alb"), "aumc_ext", verbose = FALSE)
+load_concepts(c("alb", "weight"), "aumc_ext", verbose = FALSE)
+```
